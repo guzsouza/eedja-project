@@ -10,7 +10,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\RegimentController;
 use App\Http\Controllers\DisciplineController;
-use App\Http\Controllers\GroupStudentsController;
+use App\Http\Controllers\GroupStudentController;
 use App\Http\Controllers\TeacherGroupAssociationController;
 use App\Http\Controllers\GroupDisciplineAssociationController;
 use App\Http\Controllers\TeacherDisciplineAssociationController;
@@ -30,6 +30,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/disciplinas', [DisciplineController::class, 'index']);
+Route::resource('turnos', ShiftController::class);
+Route::resource('grupos', GroupController::class);
+Route::resource('estudantes', StudentController::class);
+Route::resource('professores', TeacherController::class);
+Route::resource('regimentos', RegimentController::class);
+Route::resource('planejamentos', PlanningController::class);
+Route::resource('disciplinas', DisciplineController::class);
+Route::resource('estudantes-grupos', GroupStudentController::class);
+Route::resource('professores-grupos', TeacherGroupAssociationController::class);
+Route::resource('disciplinas-grupos', GroupDisciplineAssociationController::class);
+Route::resource('professores-disciplinas', TeacherDisciplineAssociationController::class);
+
+/*
+Route::prefix('/disciplinas')->group(function(){
+    Route::get('/criar', [DisciplineController::class, 'create'])->name('discipline.create');
+    Route::get('/editar', [DisciplineController::class, 'edit'])->name('discipline.edit');
+    Route::get('/', [DisciplineController::class, 'index'])->name('discipline.index');
+    Route::post('/', [DisciplineController::class, 'store'])->name('discipline.store');
+    Route::get('/{id}', [DisciplineController::class, 'show'])->name('discipline.show');
+    Route::put('/{id}', [DisciplineController::class, 'update'])->name('discipline.update');
+    Route::delete('/{id}', [DisciplineController::class, 'destroy'])->name('discipline.destroy');
+});
+*/
 
 require __DIR__.'/auth.php';

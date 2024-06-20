@@ -43,7 +43,7 @@ class TeacherService{
         }
     }
 
-    public function update(int $id, StoreTeacherRequest $request){
+    public function update(int $id, UpdateTeacherRequest $request){
         try{
             return DB::transaction(function() use($id, $request){
                 $teacher = $this->findTeacher($id);

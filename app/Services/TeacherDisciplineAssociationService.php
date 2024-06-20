@@ -53,7 +53,7 @@ class TeacherDisciplineAssociationService{
         }
     }
 
-    public function update(int $id, StoreTeacherDisciplineAssociationRequest $request){
+    public function update(int $id, UpdateTeacherDisciplineAssociationRequest $request){
         try{
             return DB::transaction(function() use($id, $request){
                 $teacherDiscipline = $this->findTeacherDisciplineAssociation($id);

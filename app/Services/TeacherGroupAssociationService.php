@@ -33,46 +33,27 @@ class TeacherGroupAssociationService{
         try{
             return DB::transaction(function() use($request){ 
                 $teachergroup = TeacherGroupAssociation::create($request->only(
-                    'teacher_id',
-                    'discipline_name',
-                    'classes',
-                    'startDate',
-                    'endDate',
-                    'date',
-                    'content',
-                    'skills',
-                    'resource',
-                    'metodology',
-                    'project'
+                    'group_id',
+                    'teacher_id'
                 ));
 
-                return $teachergroup;
+                return $teachergroup->with('group_id', 'tacher_id');
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function update(int $id, StoreTeacherGroupAssociationRequest $request){
+    public function update(int $id, UpdateTeacherGroupAssociationRequest $request){
         try{
             return DB::transaction(function() use($id, $request){
                 $teachergroup = $this->findTeacherGroupAssociation($id);
                 $teachergroup->fill($request->only(
                     'group_id',
-                    'teacher_id',
-                    'discipline_name',
-                    'classes',
-                    'startDate',
-                    'endDate',
-                    'date',
-                    'content',
-                    'skills',
-                    'resource',
-                    'metodology',
-                    'project'
+                    'teacher_id'
                 ))->save();
 
-                return $teachergroup;
+                return $teachergroup->with('group_id', 'tacher_id');
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);

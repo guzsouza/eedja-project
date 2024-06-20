@@ -6,7 +6,7 @@ use App\Http\Requests\StoreGroupStudentRequest;
 use App\Http\Requests\UpdateGroupStudentRequest;
 use App\Services\GroupStudentService;
 
-class GroupStudentsController extends Controller
+class GroupStudentController extends Controller
 {
     protected $groupStudentService;
     public function __construct(GroupStudentService $groupStudentService){
