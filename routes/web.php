@@ -1,7 +1,20 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\PlanningController;
+use App\Http\Controllers\RegimentController;
+use App\Http\Controllers\DisciplineController;
+use App\Http\Controllers\GroupStudentsController;
+use App\Http\Controllers\TeacherGroupAssociationController;
+use App\Http\Controllers\GroupDisciplineAssociationController;
+use App\Http\Controllers\TeacherDisciplineAssociationController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,5 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/disciplinas', [DisciplineController::class, 'index']);
 
 require __DIR__.'/auth.php';

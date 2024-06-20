@@ -2,65 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Services\StudentService;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    protected $studentService;
+    public function __construct(StudentService $studentService){
+        $this->studentService = $studentService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    //GET /planejamento
+    public function index(){
+        return $this->studentService->getAll();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStudentRequest $request)
-    {
-        //
+    //GET /planejamento/criar
+    public function create(){
+        return view('components.student.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Student $student)
-    {
-        //
+    //POST /planejamento/criar
+    public function store(StoreStudentRequest $request){
+        return $this->studentService->add($request);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Student $student)
-    {
-        //
+    //GET /planejamento/{id}
+    public function show(int $id){
+        return $this->studentService->getById($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateStudentRequest $request, Student $student)
-    {
-        //
+    //GET /planejamento/editar/id
+    public function edit(int $id){
+        return $this->studentService->getById($id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Student $student)
-    {
-        //
+    //PUT /planejamento/editar/id
+    public function update(int $id, UpdateStudentRequest $request){
+        return $this->studentService->update($id, $request);
+    }
+
+    //Delete /planejamento/excluir/id
+    public function destroy(int $id){
+        return $this->studentService->delete($id);
     }
 }

@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\GroupStudent;
+use App\Models\Group;
 
-class Student extends Model{
+class Shift extends Model{
     use HasFactory;
-    protected $table = 'students';
+    protected $table = 'shifts';
 
     protected $fillable = [
-        'name',
+        'name'
     ];
     
     protected $hidden = [
@@ -23,9 +23,9 @@ class Student extends Model{
 
     ];
 
-    //Relações Eloquent
+    //Eloquent Association
     //has
-    public function GroupAssociation(){
-        return $this->hasOne(GroupStudent::class);
+    public function groupAssociation(){
+        return $this->hasOne(Group::class);
     }
 }
