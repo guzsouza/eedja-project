@@ -27,7 +27,6 @@
             color: #333;
             font-size: 1.2rem;
             letter-spacing: 1px;
-            line-height: auto;
             overflow-x: hidden;
         }
     
@@ -62,17 +61,12 @@
             align-items: center;
             text-align: center;
             height: 100vh;
-            background-color: #fff;
-        }
-        
-        .content{
-            height: 100vh;
             background-color: #fafafa;
         }
     
         footer {
-            background: #02006e;
-            color: #fff;
+            background: #00000f;
+            color: #ffffff;
             text-align: center;
             padding: 20px 0;
             position: relative;
@@ -83,7 +77,7 @@
         }
     
         footer .social-icons a {
-            color: #fff;
+            color: #ffffff;
             margin: 0 5px;
             text-decoration: none;
             font-size: 1.2em;
@@ -97,11 +91,20 @@
         .ionic{
             font-size: 1.5rem;
         }
-    
+
+        .header-container{
+            -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.02);
+            -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.02);
+            box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.02);
+        }
+        
+        .content{
+            padding: 4% 0;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header class="header-container">
         <x-navbar/>
     </header>
 
@@ -112,9 +115,9 @@
     <footer>
         <p>&copy; EEDJA. Todos os direitos reservados.</p>
         <div class="social-icons">
-            <ion-icon name="logo-instagram"></ion-icon>
-            <ion-icon name="logo-facebook"></ion-icon>
-            <ion-icon name="logo-twitter"></ion-icon>    
+            <a href=""><ion-icon name="logo-instagram"></ion-icon></a>
+            <a href=""><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href=""><ion-icon name="logo-twitter"></ion-icon></a>
         </div>
     </footer>
 

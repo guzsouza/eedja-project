@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="card-container">
-        <div class="card" style="width: 25rem;">
+        <div class="card" style="width: 30rem">
             <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
             <div class="card-body">
                 <h5 class="card-title">Planejamento</h5>
@@ -27,10 +27,13 @@
       background-color: black;
     }
 
-    .card-container{
+    .card-container {
         display: flex;
-        justify-content: center;
-    }
+        flex-wrap: wrap; /* Correct property for wrapping */
+        gap: 50px;
+        justify-content: center; /* Center children horizontally */
+        align-items: center; /* Center children vertically */
+}
 
     .section-container{
         display: flex;
@@ -59,6 +62,24 @@
         padding: 4px 1px;
         display: flex;
         align-items: center;
+    }
+
+    .box {
+        flex: 1 1 calc(33.33% - 20px); / 3 caixas por linha menos o gap /
+        background-color: lightblue;
+        height: 100px;
+    }
+
+    @media (max-width: 768px) {
+        .box {
+            flex: 1 1 calc(50% - 20px); / 2 caixas por linha para telas menores /
+        }
+    }
+
+    @media (max-width: 480px) {
+        .box {
+            flex: 1 1 calc(100% - 20px); / 1 caixa por linha para telas pequenas */
+        }
     }
 </style>
 

@@ -7,10 +7,10 @@
 @auth
   <div class="link-container">
     <div class="dropdown" style="margin-right: 10px">
-      <button class="btn dropdown-toggle nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn dropdown-toggle nav-btn nav-font" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Serviços
       </button>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu nav-font">
         <li><a class="dropdown-item" href="#">Área do professor</a></li>
         <li><a class="dropdown-item" href="/notFound">Área do aluno</a></li>
         <li><a class="dropdown-item" href="/notFound">Área do secretário</a></li>
@@ -18,7 +18,7 @@
     </div>
 
     <div>
-      <a href="#login" class="btn nav-btn">Sair</a>
+      <a href="#login" class="btn nav-btn nav-font">Sair</a>
     </div>
     
     {{-- 
@@ -52,7 +52,7 @@
     .nav-container {
       display: flex;
       justify-content: space-between;
-      background: #fff; 
+      background: #ffffff; 
       padding: 10px 20px;
     }
     
@@ -106,5 +106,9 @@
     .link-container{
       display: flex;
       align-content: center;
+    }
+
+    .nav-font{
+      font-size: 1.5rem;
     }
   </style>
