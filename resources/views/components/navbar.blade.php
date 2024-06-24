@@ -1,60 +1,78 @@
-<div class="logo">EEDJA</div>
+<div class="nav-container">
+  <div class="logo">
+    <a href="/dashboard">
+      <img src="/img/logo-eedja.svg" alt="" width="30px" height="30px">
+    </a>
+  </div>
 @auth
-  <nav>
-    <ul>
-      <li>
-        <div class="dropdown">
-          <button class="btn dropdown-toggle nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Serviços
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Área do professor</a></li>
-            <li><a class="dropdown-item" href="/notFound">Área do aluno</a></li>
-            <li><a class="dropdown-item" href="/notFound">Área do secretário</a></li>
-          </ul>
+  <div class="link-container">
+    <div class="dropdown" style="margin-right: 10px">
+      <button class="btn dropdown-toggle nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Serviços
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Área do professor</a></li>
+        <li><a class="dropdown-item" href="/notFound">Área do aluno</a></li>
+        <li><a class="dropdown-item" href="/notFound">Área do secretário</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <a href="#login" class="btn nav-btn">Sair</a>
+    </div>
+    
+    {{-- 
+    <div class="dropdown">
+      <button class="btn dropdown-toggle nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <ion-icon class="ionic" name="person-circle-outline"></ion-icon>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li><div class="dropdown-item btn">
+          <form action="{{ route('logout') }}" method="POST">
+            <input type="submit" class="logout-btn" value="Sair">
+          </form>
         </div>
-      </li>
-    </ul>
-  </nav>
-  <nav>
-    <ul>
-      <li>
-        <div class="dropdown">
-          <button class="btn dropdown-toggle nav-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <ion-icon class="ionic" name="person-circle-outline"></ion-icon>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><div class="dropdown-item btn">
-              <form action="{{ route('logout') }}" method="POST">
-                <input type="submit" class="logout-btn" value="Sair">
-              </form>
-            </div>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </nav>
+        </li>
+      </ul>
+    </div>
+    --}}
+  </div>
 @endauth
 
   @guest
-  <nav>
-    <ul>
-        <li><a href="#login" class="cta"></a></li>
-    </ul>
-  </nav>
+  <div>
+    <a href="#login" class="cta">Entrar</a>
+  </div>
   @endguest
+  </div>
+</div>
 
   <style>
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      background: #fff; 
+      padding: 10px 20px;
+    }
+    
     .nav-btn{
       display: flex;
+      justify-content: center;
       align-items: center;
       font-size: 1.2rem;
     }
 
-    .ionic{
-      padding: 1px;
+    .ionic:hover{
+      color: blue;
+    }
+
+    .nav-btn:hover{
+      color: blue;
+    }
+
+    .dropdown{
+      display: flex;
     }
 
     .logout-btn{
@@ -63,7 +81,30 @@
       letter-spacing: 1px;
     }
 
-    .dropdown-toggle:focus{
-      border: none;
+    .dropdown-toggle:focus,
+    .dropdown-item:focus{
+      outline: none;
+      border: 1px solid transparent;
+    }
+
+    .dropdown-toggle:active,
+    .dropdown-item:active{
+      outline: none;
+      border: 1px solid transparent;
+    }
+
+    .dropdown-toggle:focus:active,
+    .dropdown-item:focus:active{
+      outline: none;
+      border: 1px solid transparent;
+    }
+
+    .test{
+      background-color: black;
+    }
+
+    .link-container{
+      display: flex;
+      align-content: center;
     }
   </style>

@@ -31,17 +31,6 @@
             overflow-x: hidden;
         }
     
-        header {
-            top: 0;
-            width: 100%;
-            background: #fff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-content: center;
-            z-index: 1000;
-        }
-    
         .logo {
             font-size: 1.5em;
             font-weight: bold;
@@ -68,16 +57,21 @@
         }
 
         #hero {
-            height: 100vh;
-            background-color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            height: 100vh;
+            background-color: #fff;
+        }
+        
+        .content{
+            height: 100vh;
+            background-color: #fafafa;
         }
     
         footer {
-            background: #333;
+            background: #02006e;
             color: #fff;
             text-align: center;
             padding: 20px 0;
@@ -107,7 +101,7 @@
     </style>
 </head>
 <body>
-    <header class="header">
+    <header>
         <x-navbar/>
     </header>
 
