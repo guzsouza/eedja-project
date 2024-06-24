@@ -1,14 +1,15 @@
-<nav class="navbar bg-body-tertiary">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="align-text-top d-inline-block">
-        </a>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <p>Sair</p>
-    </div>
-  </div>
-</nav>
+<div class="logo">EEDJA</div>
+  <nav>
+      <ul>
+          @auth
+            <li><a href="#">Planejamentos</a></li>
+            <li><a href="#">Sobre</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Portfólio</a></li>
+            <li><a href="#">Contato</a></li>
+          @endauth
+          @guest
+            <li><a href="#login" class="cta">Entrar</a></li>
+          @endguest
+      </ul>
+  </nav>

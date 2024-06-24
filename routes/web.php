@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 /*
 Route::prefix('/disciplinas')->group(function(){
     Route::get('/criar', [DisciplineController::class, 'create'])->name('discipline.create');
