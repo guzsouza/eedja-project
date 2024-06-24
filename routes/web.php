@@ -30,17 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('turnos', ShiftController::class);
-Route::resource('grupos', GroupController::class);
-Route::resource('estudantes', StudentController::class);
-Route::resource('professores', TeacherController::class);
-Route::resource('regimentos', RegimentController::class);
-Route::resource('planejamentos', PlanningController::class);
-Route::resource('disciplinas', DisciplineController::class);
-Route::resource('estudantes-grupos', GroupStudentController::class);
-Route::resource('professores-grupos', TeacherGroupAssociationController::class);
-Route::resource('disciplinas-grupos', GroupDisciplineAssociationController::class);
-Route::resource('professores-disciplinas', TeacherDisciplineAssociationController::class);
 
 /*
 Route::prefix('/disciplinas')->group(function(){
