@@ -1,25 +1,104 @@
 <x-app-layout>
-    <div class="card-container">
-        <div class="card" style="width: 30rem">
-            <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
-            <div class="card-body">
-                <h5 class="card-title">Planejamento</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
-            </div>
-            <div class="card-footer" style="padding: 20px 15px">
-                <div class="card-btn-container">
-                    <div class="input-group">
-                        <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                        <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
+    @section('title', 'Área do professor')
+    <section class="section-container">
+        <div class="card-container">
+            <div class="card" style="width: 30rem">
+                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
+                <div class="card-body">
+                    <h5 class="card-title">Planejamento</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
+                </div>
+                <div class="card-footer" style="padding: 20px 15px">
+                    <div class="card-btn-container">
+                        <div class="input-group">
+                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
+                            <a class="btn btn-primary btn-service" href="{{ route('planning.index') }}" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></a>
+                        </div>
+                        <div class="input-group d-flex justify-content-end">
+                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
+                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        </div>
                     </div>
-                    <div class="input-group d-flex justify-content-end">
-                        <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                        <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                </div>
+            </div>
+            <div class="card" style="width: 30rem">
+                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
+                <div class="card-body">
+                    <h5 class="card-title">Planejamento</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
+                </div>
+                <div class="card-footer" style="padding: 20px 15px">
+                    <div class="card-btn-container">
+                        <div class="input-group">
+                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
+                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
+                        </div>
+                        <div class="input-group d-flex justify-content-end">
+                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
+                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 30rem">
+                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
+                <div class="card-body">
+                    <h5 class="card-title">Planejamento</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
+                </div>
+                <div class="card-footer" style="padding: 20px 15px">
+                    <div class="card-btn-container">
+                        <div class="input-group">
+                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
+                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
+                        </div>
+                        <div class="input-group d-flex justify-content-end">
+                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
+                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 30rem">
+                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
+                <div class="card-body">
+                    <h5 class="card-title">Planejamento</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
+                </div>
+                <div class="card-footer" style="padding: 20px 15px">
+                    <div class="card-btn-container">
+                        <div class="input-group">
+                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
+                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
+                        </div>
+                        <div class="input-group d-flex justify-content-end">
+                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
+                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="width: 30rem">
+                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
+                <div class="card-body">
+                    <h5 class="card-title">Planejamento</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
+                </div>
+                <div class="card-footer" style="padding: 20px 15px">
+                    <div class="card-btn-container">
+                        <div class="input-group">
+                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
+                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
+                        </div>
+                        <div class="input-group d-flex justify-content-end">
+                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
+                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </x-app-layout>
 
 <style>
@@ -33,11 +112,10 @@
         gap: 50px;
         justify-content: center; /* Center children horizontally */
         align-items: center; /* Center children vertically */
-}
+    }
 
     .section-container{
-        display: flex;
-        align-content: center;
+        min-height: 100vh;  
     }
     
     .card-btn-container{

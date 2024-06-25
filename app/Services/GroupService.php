@@ -34,7 +34,7 @@ class GroupService{
             return DB::transaction(function() use($request){ 
                 $group = Group::create($request->only(
                     'reg_id',
-                    'shift_id'
+                    'name'
                 ));
 
                 return $group->with('regiment', 'shift');
@@ -50,7 +50,6 @@ class GroupService{
                 $group = $this->findGroup($id);
                 $group->fill($request->only(
                     'name',
-                    'reg_id',
                     'shift_id'
                 ))->save();
 

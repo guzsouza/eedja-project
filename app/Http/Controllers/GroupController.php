@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\UpdateGroupRequest;
 use App\Services\GroupService;
+use App\Services\PlanningService;
 
 class GroupController extends Controller{
     protected $groupService;
-    public function __construct(GroupService $groupService){
+    protected $planningService;
+    public function __construct(GroupService $groupService, PlanningService $planningService){
         $this->groupService = $groupService;
+        $this->planningService = $planningService;
     }
 
     public function index(){
-        return $this->groupService->getAll();
+        $groups = $this->groupService->getAll();
+        $plannings = $this->planningService->getAll();
+        return view('plannings', ['groups' => $groups, 'plannings' => $plannings]);
+
     }
 
     public function create(){

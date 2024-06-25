@@ -16,7 +16,6 @@ use Database\Seeders\GroupDisciplineAssociationSeeder;
 use Database\Seeders\GroupSeeder;
 use Database\Seeders\GroupStudentsSeeder;
 use Database\Seeders\PlanningSeeder;
-use Database\Seeders\RegimentSeeder;
 use Database\Seeders\ShiftSeeder;
 use Database\Seeders\StudentSeeder;
 use Database\Seeders\TeacherDisciplineAssociationSeeder;
@@ -33,7 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShiftSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(TeachersSeeder::class);
-        $this->call(RegimentSeeder::class);
         
         $this->call(GroupSeeder::class);
 

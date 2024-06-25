@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('planejamentos', [GroupController::class, 'index'])->name('planning.index');
+Route::get('apiPlanning/{id}', [PlanningController::class, 'show'])->name('planning.show');
+
 /*
 Route::prefix('/disciplinas')->group(function(){
     Route::get('/criar', [DisciplineController::class, 'create'])->name('discipline.create');

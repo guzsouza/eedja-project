@@ -21,8 +21,8 @@ class StoreGroupRequest extends FormRequest{
     public function rules(): array
     {
         return [
-            'reg_id',
-            'shift_id' => ['required']
+            'shift_id',
+            'name' => ['required']
         ];
     }
 }

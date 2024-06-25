@@ -13,21 +13,21 @@ class GroupSeeder extends Seeder
      */
     public function run(): void{
         $groups = [
-            ['reg_id' => 1, 'shift_id' => 1],
-            ['reg_id' => 2, 'shift_id' => 1],
-            ['reg_id' => 3, 'shift_id' => 2],
-            ['reg_id' => 4, 'shift_id' => 2],
-            ['reg_id' => 5, 'shift_id' => 1],
-            ['reg_id' => 6, 'shift_id' => 1],
-            ['reg_id' => 7, 'shift_id' => 2],
-            ['reg_id' => 8, 'shift_id' => 2],
-            ['reg_id' => 9, 'shift_id' => 1],
-            ['reg_id' => 10, 'shift_id' => 1],
+            ['name' => 'REG1', 'shift_id' => 1],
+            ['name' => 'REG2', 'shift_id' => 1],
+            ['name' => 'REG3', 'shift_id' => 2],
+            ['name' => 'REG4', 'shift_id' => 2],
+            ['name' => 'REG5', 'shift_id' => 1],
+            ['name' => 'REG6', 'shift_id' => 1],
+            ['name' => 'REG7', 'shift_id' => 2],
+            ['name' => 'REG8', 'shift_id' => 2],
+            ['name' => 'REG9', 'shift_id' => 1],
+            ['name' => 'REG10', 'shift_id' => 1],
         ];
 
         foreach ($groups as $group) {
             Group::create([
-                'reg_id' => $group['reg_id'],
+                'name' => $group['name'],
                 'shift_id' => $group['shift_id'],
             ]);
         }

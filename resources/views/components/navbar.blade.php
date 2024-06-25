@@ -1,7 +1,7 @@
 <div class="nav-container">
   <div class="logo">
     <a href="/dashboard">
-      <img src="/img/logo-eedja.svg" alt="" width="30px" height="30px">
+      <img src="/img/logo-eedja.svg" alt="" width="38px" height="38px">
     </a>
   </div>
 @auth

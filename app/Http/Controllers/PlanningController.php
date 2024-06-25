@@ -15,8 +15,10 @@ class PlanningController extends Controller{
     }
 
     public function index(){
-        return $this->planningService->getAll();
+        $plannings = $this->planningService->getAll();
+        return view('planning', ['plannings' => $plannings]);
     }
+    
 
     public function create(){
         return view('components.planning.create');

@@ -16,8 +16,8 @@ class Group extends Model{
     protected $table = 'groups';
 
     protected $fillable = [
-        'reg_id',
-        'shift_id'
+        'shift_id',
+        'name'
     ];
     
     protected $hidden = [
@@ -41,12 +41,6 @@ class Group extends Model{
 
     public function studentsAssociantions(){
         return $this->hasMany(GroupStudent::class);
-    }
-
-
-    //belongsTo
-    public function regiment(){
-        return $this->belongsTo(Regiment::class, 'reg_id');
     }
 
     public function shift(){

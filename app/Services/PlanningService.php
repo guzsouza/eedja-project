@@ -23,7 +23,13 @@ class PlanningService{
 
     public function getById(int $id){
         try{
-            return $this->findPlanning($id);
+            $planning = $this->findPlanning($id);
+            return response()->json([
+                $planning,
+                $planning->group,
+                $planning->teacher,
+                $planning->discipline
+            ]);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
