@@ -11,18 +11,21 @@ use App\Http\Requests\UpdatePlanningRequest;
 use App\Services\PlanningService;
 use App\Services\GroupService;
 use App\Services\DisciplineService;
+use App\Services\TeacherService;
 
 class PlanningController{
     //serviços usados
     protected $planningService;
     protected $groupIndexService;
     protected $disciplineIndexService;
+    protected $teacherIndexService;
     
     //construtor dos serviços
-    public function __construct(PlanningService $planningService, GroupService $groupIndexService, DisciplineService $disciplineIndexService){
+    public function __construct(PlanningService $planningService, GroupService $groupIndexService, DisciplineService $disciplineIndexService, TeacherService $teacherIndexService){
         $this->planningService = $planningService;
         $this->groupIndexService = $groupIndexService;
         $this->disciplineIndexService = $disciplineIndexService;
+        $this->teacherIndexService = $teacherIndexService;
     }
 
     //index de grupos disciplinas e planejamentos
@@ -30,7 +33,8 @@ class PlanningController{
         $plannings = $this->planningService->getAll();
         $groups = $this->groupIndexService->getAll();
         $disciplines = $this->disciplineIndexService->getAll();
-        return view('components.planning.index', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines]);
+        $teachers = $this->teacherIndexService->getAll();
+        return view('components.planning.index', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines, 'teachers' => $teachers]);
     }
     
 

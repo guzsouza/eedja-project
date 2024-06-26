@@ -24,9 +24,9 @@ Route::middleware('auth')->group(function () {
 
 
 //viewWelcome
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 
@@ -47,7 +47,7 @@ Route::put('/planejamentos/{id}', [PlanningController::class, 'update'])->name('
 
 
 //grupodisciplina
-Route::get('grupo-disciplina/{group_id}/{discipline_id}', [GroupDisciplineAssociation::class, 'show'])->name('groupDiscipline.show');
+Route::get('grupo-disciplina/{group_id}/{discipline_id}', [GroupDisciplineAssociationController::class, 'show'])->name('groupDiscipline.show');
 
 /*
 Route::prefix('/disciplinas')->group(function(){
