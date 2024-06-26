@@ -38,11 +38,26 @@ class PlanningService{
 
     public function getPlannings(Request $request){
         try{
-            return Planning::where('group_id', $request->group_id)
-                            ->where('discipline_id', $request->discipline_id)
-                            ->where('bimester', $request->bimester)
-                            ->where('year', $request->year)
-                            ->get();
+            $query = Planning::where('group_id', $request->group_id)
+                            ->where('bimester', $request->bimester);
+
+            if ($request->has('teacher_id')) {
+                $query->where('teacher_id', $request->teacher_id);
+            }
+
+            if ($request->has('discipline_id')) {
+                $query->where('discipline_id', $request->discipline_id);
+            }
+
+            if ($request->has('year')) {
+                $query->where('year', $request->year);
+            }
+            else {
+                $query->where('year', date('Y'));
+            }
+                            
+            $plannings = $query;
+            return $plannings->get();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
