@@ -21,19 +21,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 //viewWelcome
 Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 //viewDashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 //Rotas de Serviços
 
@@ -51,7 +47,6 @@ Route::resource('estudantes', StudentController::class);
 
     //Professores
 Route::resource('professores', TeacherController::class);
-
 
     //Planejamentos
 Route::get('/planejamentos/criar', [PlanningController::class, 'create'])->name('planning.create'); //view criar
