@@ -42,7 +42,21 @@
             <form action="{{ route('planning.show') }}" method="POST" id="planningFilter">
                     @csrf
                 <div class="card">  
-                    <select class="form-select" aria-label="Default select example" name="group_id">
+                                       
+                    <div class="input-group">
+                        <input type="checkbox" name="check" id="teacherCheck" onchange="showInputTeacher('teacher')">
+                        <p>Selecionar professor</p>
+                        <input type="checkbox" name="check" id="disciplineCheck" onchange="showInputDiscipline('discipline')">
+                        <p>Selecionar disciplina</p>
+                    </div>
+                    
+                    <select class="form-select" aria-label="Default select example" name="year">
+                        <option selected disabled>Escolha o ano</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+
+                    <select class="mt-3 form-select" aria-label="Default select example" name="group_id">
                         <option selected disabled>Escolha o regimento</option>
                         @foreach ($groups as $group)
                             <option value="{{ $group['id'] }}">{{ $group['name'] }}</option>
@@ -56,10 +70,7 @@
                         <option value="3">3º Bimestre</option>
                         <option value="4">4º Bimestre</option>
                     </select>
-                    <div class="mt-3 d-flex input-group">
-                        <input type="checkbox" name="check" id="teacherCheck" onchange="showInputTeacher('teacher')">
-                        <p>Selecionar professor</p>
-                    </div>
+                                        
                     <select class="mt-3 form-select" aria-label="Default select example" name="year" id="teachers" style="display: none">
                         <option selected disabled>Escolha o professor</option>
                         @foreach ($teachers as $teacher)
@@ -67,23 +78,12 @@
                         @endforeach
                     </select>
                     
-                    <div class="mt-3 d-flex input-group">
-                        <input type="checkbox" name="check" id="disciplineCheck" onchange="showInputDiscipline('discipline')">
-                        <p>Selecionar disciplina</p>
-                    </div>
                     <select class="mt-3 form-select" aria-label="Default select example" name="discipline_id" id="disciplines" style="display: none">
                         <option selected disabled>Escolha a disciplina</option>
                         @foreach ($disciplines as $discipline)
                             <option value="{{ $discipline['id'] }}">{{ $discipline['name'] }}</option>
                         @endforeach
                     </select>
-
-                    <select class="mt-3 form-select" aria-label="Default select example" name="year">
-                        <option selected disabled>Escolha o ano</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                    </select>
-
                     <button type="submit" class="mt-3 btn btn-success">Enviar</button>
                 </div>
             </form>
