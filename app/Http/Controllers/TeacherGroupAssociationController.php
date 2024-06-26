@@ -29,22 +29,22 @@ class TeacherGroupAssociationController extends Controller
     }
 
     //GET /planejamento/{id}
-    public function show(int $id){
-        return $this->teacherGroupService->getById($id);
+    public function show(int $teacher_id, int $group_id){
+        return $this->teacherGroupService->getById($teacher_id, $group_id);
     }
 
     //GET /planejamento/editar/id
-    public function edit(int $id){
-        return $this->teacherGroupService->getById($id);
+    public function edit(int $teacher_id, int $group_id){
+        return $this->teacherGroupService->getById($teacher_id, $group_id);
     }
 
     //PUT /planejamento/editar/id
-    public function update(int $id, UpdateTeacherGroupAssociationRequest $request){
-        return $this->teacherGroupService->update($id, $request);
+    public function update(int $teacher_id, int $group_id, UpdateTeacherGroupAssociationRequest $request){
+        return $this->teacherGroupService->update($teacher_id, $group_id, $request);
     }
 
     //Delete /planejamento/excluir/id
-    public function destroy(int $id){
-        return $this->teacherGroupService->delete($id);
+    public function destroy(int $teacher_id, int $group_id){
+        return $this->teacherGroupService->delete($teacher_id, $group_id);
     }
 }

@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 
 class TeacherGroupAssociationService{
-    private function findTeacherGroupAssociation(int $id){
-        return TeacherGroupAssociation::findOrFail($id);
+    private function findTeacherGroupAssociation(int $teacher_id, int $group_id){
+        return TeacherGroupAssociation::findOrFail($teacher_id, $group_id);
     }
 
     public function getAll(){
@@ -21,9 +21,9 @@ class TeacherGroupAssociationService{
         }
     }
 
-    public function getById(int $id){
+    public function getById(int $teacher_id, int $group_id){
         try{
-            return $this->findTeacherGroupAssociation($id);
+            return $this->findTeacherGroupAssociation($teacher_id, $group_id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -37,33 +37,33 @@ class TeacherGroupAssociationService{
                     'teacher_id'
                 ));
 
-                return $teachergroup->with('group_id', 'tacher_id');
+                return $teachergroup;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function update(int $id, UpdateTeacherGroupAssociationRequest $request){
+    public function update(int $teacher_id, int $group_id, UpdateTeacherGroupAssociationRequest $request){
         try{
-            return DB::transaction(function() use($id, $request){
-                $teachergroup = $this->findTeacherGroupAssociation($id);
+            return DB::transaction(function() use($teacher_id, $group_id, $request){
+                $teachergroup = $this->findTeacherGroupAssociation($teacher_id, $group_id);
                 $teachergroup->fill($request->only(
                     'group_id',
                     'teacher_id'
                 ))->save();
 
-                return $teachergroup->with('group_id', 'tacher_id');
+                return $teachergroup;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function delete(int $id){
+    public function delete(int $teacher_id, int $group_id){
         try{
-            return DB::transaction(function() use($id){
-                $teachergroup = $this->findTeacherGroupAssociation($id);
+            return DB::transaction(function() use($teacher_id, $group_id){
+                $teachergroup = $this->findTeacherGroupAssociation($teacher_id, $group_id);
                 $teachergroup->delete();
                 return response()->json(['Deleted'], 204);
             });

@@ -13,6 +13,8 @@ class Planning extends Model{
         'group_id',
         'teacher_id',
         'discipline_id',
+        'bimester',
+        'year',
         'classes',
         'startDate',
         'endDate',

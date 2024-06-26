@@ -23,7 +23,7 @@ class ShiftService{
 
     public function getById(int $id){
         try{
-            return $this->findShift($id)->with('group', 'Shift');
+            return $this->findShift($id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

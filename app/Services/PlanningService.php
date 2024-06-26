@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Planning;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePlanningRequest;
 use App\Http\Requests\UpdatePlanningRequest;
 use Illuminate\Support\Facades\DB;
@@ -35,6 +36,18 @@ class PlanningService{
         }
     }
 
+    public function getPlannings(Request $request){
+        try{
+            return Planning::where('group_id', $request->group_id)
+                            ->where('discipline_id', $request->discipline_id)
+                            ->where('bimester', $request->bimester)
+                            ->where('year', $request->year)
+                            ->get();
+        } catch (Exception $e){
+            return response()->json(['Details' => $e], 400);
+        }
+    }
+
     public function add(StorePlanningRequest $request){
         try{
             return DB::transaction(function() use($request){ 
@@ -42,6 +55,8 @@ class PlanningService{
                     'group_id',
                     'teacher_id',
                     'discipline_id',
+                    'bimester',
+                    'year',
                     'classes',
                     'startDate',
                     'endDate',
@@ -68,6 +83,8 @@ class PlanningService{
                     'group_id',
                     'teacher_id',
                     'discipline_id',
+                    'bimester',
+                    'year',
                     'classes',
                     'startDate',
                     'endDate',

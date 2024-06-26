@@ -23,7 +23,7 @@ class StudentService{
 
     public function getById(int $id){
         try{
-            return $this->findStudent($id)->with('group', 'Student');
+            return $this->findStudent($id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

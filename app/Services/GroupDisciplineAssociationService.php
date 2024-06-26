@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 
 class GroupDisciplineAssociationService{
-    private function findGroup(int $id){
-        return GroupDisciplineAssociation::findOrFail($id);
+    private function findGroup(int $group_id, int $discipline_id){
+        return GroupDisciplineAssociation::where("group_id", $group_id)
+                                        ->where("discipline_id", $discipline_id)
+                                        ->first();
     }
 
     public function getAll(){
@@ -21,9 +23,9 @@ class GroupDisciplineAssociationService{
         }
     }
 
-    public function getById(int $id){
+    public function getById(int $group_id, int $discipline_id){
         try{
-            return $this->findGroup($id)->with('group', 'discipline');
+            return $this->findGroup($group_id, $discipline_id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -37,33 +39,33 @@ class GroupDisciplineAssociationService{
                     'discipline_id'
                 ));
 
-                return $groupDiscipline->with('group', 'discipline');
+                return $groupDiscipline;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function update(int $id, UpdateGroupDisciplineAssociationRequest $request){
+    public function update(int $group_id, int $discipline_id, UpdateGroupDisciplineAssociationRequest $request){
         try{
             return DB::transaction(function() use($id, $request){
-                $groupDiscipline = $this->findGroup($id);
+                $groupDiscipline = $this->findGroup($group_id, $discipline_id);
                 $groupDiscipline->fill($request->only(
                     'group_id',
                     'discipline_id'
                 ))->save();
 
-                return $groupDiscipline->with('group', 'discipline');
+                return $groupDiscipline;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function delete(int $id){
+    public function delete(int $group_id, int $discipline_id){
         try{
-            return DB::transaction(function() use($id){
-                $groupDiscipline = $this->findGroup($id);
+            return DB::transaction(function() use($group_id, $discipline_id){
+                $groupDiscipline = $this->findGroup($group_id, $discipline_id);
                 $groupDiscipline->delete();
                 return response()->json(['Deleted'], 204);
             });

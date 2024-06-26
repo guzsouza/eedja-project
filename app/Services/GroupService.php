@@ -23,7 +23,7 @@ class GroupService{
 
     public function getById(int $id){
         try{
-            return $this->findGroup($id)->with('regiment', 'shitf');
+            return $this->findGroup($id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -37,7 +37,7 @@ class GroupService{
                     'name'
                 ));
 
-                return $group->with('regiment', 'shift');
+                return $group;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
@@ -53,7 +53,7 @@ class GroupService{
                     'shift_id'
                 ))->save();
 
-                return $group->with('regiment', 'shift');
+                return $group;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);

@@ -29,22 +29,22 @@ class GroupDisciplineAssociationController extends Controller
     }
 
     //GET /planejamento/{id}
-    public function show(int $id){
-        return $this->groupDisciplineService->getById($id);
+    public function show(int $group_id, int $discipline_id){
+        return $this->groupDisciplineService->getById($group_id, $discipline_id);
     }
 
     //GET /planejamento/editar/id
-    public function edit(int $id){
-        return $this->groupDisciplineService->getById($id);
+    public function edit(int $group_id, int $discipline_id){
+        return $this->groupDisciplineService->getById($group_id, $discipline_id);
     }
 
     //PUT /planejamento/editar/id
-    public function update(int $id, UpdateGroupDisciplineAssociationRequest $request){
-        return $this->groupDisciplineService->update($id, $request);
+    public function update(int $group_id, int $discipline_id, UpdateGroupDisciplineAssociationRequest $request){
+        return $this->groupDisciplineService->update($group_id, $discipline_id, $request);
     }
 
     //Delete /planejamento/excluir/id
-    public function destroy(int $id){
-        return $this->groupDisciplineService->delete($id);
+    public function destroy(int $group_id, int $discipline_id){
+        return $this->groupDisciplineService->delete($group_id, $discipline_id);
     }
 }

@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 
 class TeacherDisciplineAssociationService{
-    private function findTeacherDisciplineAssociation(int $id){
-        return TeacherDisciplineAssociation::findOrFail($id);
+    private function findTeacherDisciplineAssociation(int $teacher_id, $discipline_id){
+        return TeacherDisciplineAssociation::where("teacher_id", $teacher_id)
+                                            ->where("discipline_id", $discipline_id)
+                                            ->first();
     }
 
     public function getAll(){
@@ -21,9 +23,9 @@ class TeacherDisciplineAssociationService{
         }
     }
 
-    public function getById(int $id){
+    public function getById(int $teacher_id, $discipline_id){
         try{
-            return $this->findTeacherDisciplineAssociation($id);
+            return $this->findTeacherDisciplineAssociation($teacher_id, $discipline_id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -53,10 +55,10 @@ class TeacherDisciplineAssociationService{
         }
     }
 
-    public function update(int $id, UpdateTeacherDisciplineAssociationRequest $request){
+    public function update(int $teacher_id, $discipline_id, UpdateTeacherDisciplineAssociationRequest $request){
         try{
-            return DB::transaction(function() use($id, $request){
-                $teacherDiscipline = $this->findTeacherDisciplineAssociation($id);
+            return DB::transaction(function() use($teacher_id, $discipline_id, $request){
+                $teacherDiscipline = $this->findTeacherDisciplineAssociation($teacher_id, $discipline_id);
                 $teacherDiscipline->fill($request->only(
                     'group_id',
                     'teacher_id',
@@ -79,10 +81,10 @@ class TeacherDisciplineAssociationService{
         }
     }
 
-    public function delete(int $id){
+    public function delete(int $teacher_id, $discipline_id){
         try{
-            return DB::transaction(function() use($id){
-                $teacherDiscipline = $this->findTeacherDisciplineAssociation($id);
+            return DB::transaction(function() use($teacher_id, $discipline_id){
+                $teacherDiscipline = $this->findTeacherDisciplineAssociation($teacher_id, $discipline_id);
                 $teacherDiscipline->delete();
                 return response()->json(['Deleted'], 204);
             });

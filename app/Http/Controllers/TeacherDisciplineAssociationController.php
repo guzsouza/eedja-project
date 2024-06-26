@@ -29,22 +29,22 @@ class TeacherDisciplineAssociationController extends Controller
     }
 
     //GET /planejamento/{id}
-    public function show(int $id){
-        return $this->teacherDisciplineService->getById($id);
+    public function show(int $teacher_id, int $discipline_id){
+        return $this->teacherDisciplineService->getById($teacher, $discipline);
     }
 
     //GET /planejamento/editar/id
-    public function edit(int $id){
-        return $this->teacherDisciplineService->getById($id);
+    public function edit(int $teacher_id, int $discipline_id){
+        return $this->teacherDisciplineService->getById($teacher_id, $discipline_id);
     }
 
     //PUT /planejamento/editar/id
-    public function update(int $id, UpdateTeacherDisciplineAssociationRequest $request){
-        return $this->teacherDisciplineService->update($id, $request);
+    public function update(int $teacher_id, int $discipline_id, UpdateTeacherDisciplineAssociationRequest $request){
+        return $this->teacherDisciplineService->update($teacher_id, $discipline_id, $request);
     }
 
     //Delete /planejamento/excluir/id
-    public function destroy(int $id){
-        return $this->teacherDisciplineService->delete($id);
+    public function destroy(int $teacher_id, int $discipline_id){
+        return $this->teacherDisciplineService->delete($teacher_id, $discipline_id);
     }
 }

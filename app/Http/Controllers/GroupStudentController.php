@@ -29,22 +29,22 @@ class GroupStudentController extends Controller
     }
 
     //GET /planejamento/{id}
-    public function show(int $id){
-        return $this->groupStudentService->getById($id);
+    public function show(int $group_id, int $student_id){
+        return $this->groupStudentService->getById($group_id, $student_id);
     }
 
     //GET /planejamento/editar/id
-    public function edit(int $id){
-        return $this->groupStudentService->getById($id);
+    public function edit(int $group_id, int $student_id){
+        return $this->groupStudentService->getById($group_id, $student_id);
     }
 
     //PUT /planejamento/editar/id
-    public function update(int $id, UpdateGroupStudentRequest $request){
-        return $this->groupStudentService->update($id, $request);
+    public function update(int $group_id, int $student_id, UpdateGroupStudentRequest $request){
+        return $this->groupStudentService->update($group_id, $student_id, $request);
     }
 
     //Delete /planejamento/excluir/id
-    public function destroy(int $id){
-        return $this->groupStudentService->delete($id);
+    public function destroy(int $group_id, int $student_id){
+        return $this->groupStudentService->delete($group_id, $student_id);
     }
 }

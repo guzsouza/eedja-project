@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 
 class GroupStudentService{
-    private function findTeacher(int $id){
-        return GroupStudent::findOrFail($id);
+    private function findTeacher(int $group_id, int $student_id){
+        return GroupStudent::where("group_id", $group_id)
+                            ->where("student_id", $student_id)
+                            ->first();
     }
 
     public function getAll(){
@@ -21,9 +23,9 @@ class GroupStudentService{
         }
     }
 
-    public function getById(int $id){
+    public function getById(int $group_id, int $student_id){
         try{
-            return $this->findTeacher($id)->with('group', 'teacher');
+            return $this->findTeacher($group_id, $student_id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -36,32 +38,32 @@ class GroupStudentService{
                     'name'
                 ));
 
-                return $groupStudent->with('teacher', 'group');
+                return $groupStudent;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function update(int $id, UpdateGroupStudentRequest $request){
+    public function update(int $group_id, int $student_id, UpdateGroupStudentRequest $request){
         try{
-            return DB::transaction(function() use($id, $request){
-                $groupStudent = $this->findTeacher($id);
+            return DB::transaction(function() use($group_id, $student_id, $request){
+                $groupStudent = $this->findTeacher($group_id, $student_id);
                 $groupStudent->fill($request->only(
                     'name'
                 ))->save();
 
-                return $groupStudent->with('teacher', 'group');
+                return $groupStudent;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
     }
 
-    public function delete(int $id){
+    public function delete(int $group_id, int $student_id){
         try{
-            return DB::transaction(function() use($id){
-                $groupStudent = $this->findTeacher($id);
+            return DB::transaction(function() use($group_id, $student_id){
+                $groupStudent = $this->findTeacher($group_id, $student_id);
                 $groupStudent->delete();
                 return response()->json(['Deleted'], 204);
             });

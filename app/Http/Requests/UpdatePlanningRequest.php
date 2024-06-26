@@ -24,6 +24,8 @@ class UpdatePlanningRequest extends FormRequest{
             'group_id',
             'teacher_id',
             'discipline_id',
+            'bimester',
+            'year',
             'classes',
             'startDate',
             'endDate',

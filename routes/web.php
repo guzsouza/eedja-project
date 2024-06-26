@@ -15,23 +15,39 @@ use App\Http\Controllers\TeacherGroupAssociationController;
 use App\Http\Controllers\GroupDisciplineAssociationController;
 use App\Http\Controllers\TeacherDisciplineAssociationController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+//middleware
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('planejamentos', [GroupController::class, 'index'])->name('planning.index');
-Route::get('apiPlanning/{id}', [PlanningController::class, 'show'])->name('planning.show');
+
+//viewWelcome
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+//viewDashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+//Rotas de Serviços
+
+//planejamento
+Route::get('/planejamentos', [PlanningController::class, 'index'])->name('planning.index');
+Route::post('/planejamentos/visualizar', [PlanningController::class, 'show'])->name('planning.show');
+Route::get('/planejamentos/{id}', [PlanningController::class, 'edit'])->name('planning.edit');
+Route::put('/planejamentos/{id}', [PlanningController::class, 'update'])->name('planning.update'); 
+
+
+//grupodisciplina
+Route::get('grupo-disciplina/{group_id}/{discipline_id}', [GroupDisciplineAssociation::class, 'show'])->name('groupDiscipline.show');
 
 /*
 Route::prefix('/disciplinas')->group(function(){

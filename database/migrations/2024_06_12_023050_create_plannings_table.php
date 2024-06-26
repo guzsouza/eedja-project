@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('discipline_id')->references('id')->on('disciplines')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->Integer('bimester');
+            $table->year('year');
             $table->Integer('classes');
             $table->date('startDate');
             $table->date('endDate');

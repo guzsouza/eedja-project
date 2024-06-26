@@ -24,6 +24,7 @@ class StorePlanningRequest extends FormRequest{
             'group_id',
             'teacher_id',
             'discipline_id',
+            'year',
             'classes',
             'startDate',
             'endDate',
@@ -32,7 +33,8 @@ class StorePlanningRequest extends FormRequest{
             'skills',
             'resource',
             'metodology',
-            'project' => ['required']
+            'project' => ['required'],
+            'bimester' => ['required', 'between:0,5']
         ];
     }
 }

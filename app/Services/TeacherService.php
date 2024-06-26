@@ -6,6 +6,7 @@ use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\Address;
 use Exception;
 
 class TeacherService{
@@ -23,7 +24,7 @@ class TeacherService{
 
     public function getById(int $id){
         try{
-            return $this->findTeacher($id)->with('group', 'teacher');
+            return $this->findTeacher($id);
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -36,7 +37,7 @@ class TeacherService{
                     'name'
                 ));
 
-                return $teacher->with('teacher', 'group');
+                return $teacher;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
@@ -51,7 +52,7 @@ class TeacherService{
                     'name'
                 ))->save();
 
-                return $teacher->with('teacher', 'group');
+                return $teacher;
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
