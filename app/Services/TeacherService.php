@@ -16,7 +16,7 @@ class TeacherService{
 
     public function getAll(){
         try{
-            return Teacher::all();
+            return Teacher::orderBy('name', 'ASC')->get();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

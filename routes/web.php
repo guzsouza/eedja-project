@@ -29,7 +29,7 @@ Route::get('/', function () {
 //viewDashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 //Rotas de Serviços
 

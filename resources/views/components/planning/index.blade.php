@@ -40,9 +40,8 @@
 
         <div class="card-container" id="step2">
             <form action="{{ route('planning.show') }}" method="POST" id="planningFilter">
-                    @csrf
+                @csrf
                 <div class="card">  
-                                       
                     <div class="input-group">
                         <input type="checkbox" name="check" id="teacherCheck" onchange="showInputTeacher('teacher')">
                         <p>Selecionar professor</p>
@@ -52,6 +51,7 @@
                     
                     <select class="form-select" aria-label="Default select example" name="year">
                         <option selected disabled>Escolha o ano</option>
+                        <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
                     </select>
@@ -71,7 +71,7 @@
                         <option value="4">4º Bimestre</option>
                     </select>
                                         
-                    <select class="mt-3 form-select" aria-label="Default select example" name="year" id="teachers" style="display: none">
+                    <select class="mt-3 form-select" aria-label="Default select example" name="teacher_id" id="teachers" style="display: none">
                         <option selected disabled>Escolha o professor</option>
                         @foreach ($teachers as $teacher)
                             <option value="{{ $teacher['id'] }}">{{ $teacher['name'] }}</option>

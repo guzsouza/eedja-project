@@ -15,7 +15,7 @@ class DisciplineService{
 
     public function getAll(){
         try{
-            return Discipline::all();
+            return Discipline::orderBy('name', 'ASC')->get();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

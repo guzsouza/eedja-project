@@ -47,7 +47,8 @@ class PlanningController{
     }
 
     public function show(Request $request){
-        return $this->planningService->getPlannings($request);
+        $plannings = $this->planningService->getPlannings($request);
+        return view('components.planning.show', ['plannings' => $plannings]);
     }
 
     public function edit(int $id){
