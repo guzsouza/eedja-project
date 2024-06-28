@@ -66,6 +66,16 @@ class PlanningService{
         }
     }
 
+    public function getSpreadSheet(Request $request){
+        try{
+            return Planning::where('group_id', $request->group_id)
+                                ->where('discipline_id', $request->discipline_id)
+                                ->where('bimester', $request->bimester)->get();
+        } catch (Exception $e){
+            return response()->json(['Details' => $e], 400);
+        }
+    }
+
     public function add(StorePlanningRequest $request){
         try{
             return DB::transaction(function() use($request){ 

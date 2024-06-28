@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('title', 'Planejamento')
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" id="advancedSearch">
         <div class="col-sm-11 card">
             <div style="overflow-x: auto">
                 <div class="table-responsive">
@@ -15,7 +15,7 @@
                                 <th scope="col">Bimestre</th>
                                 <th scope="col">Disciplina</th>
                                 <th scope="col">Ano</th>
-                                <th scope="col"></th> <!-- Coluna vazia para o botão de expandir/collapse -->
+                                <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,9 +29,20 @@
                                     <td>{{ $planning['discipline']['name'] }}</td>
                                     <td>{{ $planning['year'] }}</td>
                                     <td>
-                                        <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails{{ $loop->index }}" aria-expanded="false" aria-controls="collapseDetails{{ $loop->index }}">
-                                            Detalhes
-                                        </button>
+                                        <div class="d-flex">
+                                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails{{ $loop->index }}" aria-expanded="false" aria-controls="collapseDetails{{ $loop->index }}">
+                                                Detalhes
+                                            </button>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Opções
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                                                    <li><a class="dropdown-item" href="#">Editar</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- Collapse para os detalhes adicionais -->
@@ -43,8 +54,6 @@
                                             <strong>Recursos utilizados:</strong> {{ $planning['resource'] }}<br>
                                             <strong>Metodologia:</strong> {{ $planning['metodology'] }}<br>
                                             <strong>Trabalhos:</strong> {{ $planning['project'] }}<br>  
-                                            <button class="btn btn-primary"><ion-icon class="action-button" name="pencil"></ion-icon></button>
-                                            <button class="btn btn-danger"><ion-icon class="action-button" name="trash-sharp"></ion-icon></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -55,7 +64,7 @@
             </div>
         </div>
     </div>
-    
+
     <style>
         .btn{
             padding: 5px;

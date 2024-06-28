@@ -6,7 +6,7 @@
             <button type="button" class="btn bg-primary" onclick="changeStep('2')">Busca avançada</button>
         </div>
         <div class="card-container" id="step1">
-            <form action="{{ route('planning.show') }}" method="POST" id="planningFilter">
+            <form action="{{ route('planning.simple') }}" method="POST" id="planningFilter">
                     @csrf
                 <div class="card">  
                     <select class="form-select" aria-label="Default select example" name="group_id">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="card-container" id="step2">
-            <form action="{{ route('planning.show') }}" method="POST" id="planningFilter">
+            <form action="{{ route('planning.advanced') }}" method="POST" id="planningFilter">
                 @csrf
                 <div class="card">  
                     <div class="input-group">
@@ -90,7 +90,6 @@
         </div>
     </section>
     <script>
-        document
         $("#step1").show();
         $("#step2").hide();
 

@@ -46,9 +46,14 @@ class PlanningController{
         return $this->planningService->add($request);
     }
 
-    public function show(Request $request){
+    public function simpleSearch(Request $request){
+        $plannings = $this->planningService->getSpreadSheet($request);
+        return view('components.planning.simple', ['plannings' => $plannings]);
+    }
+
+    public function advancedSearch(Request $request){
         $plannings = $this->planningService->getPlannings($request);
-        return view('components.planning.show', ['plannings' => $plannings]);
+        return view('components.planning.advanced', ['plannings' => $plannings]);
     }
 
     public function edit(int $id){

@@ -52,7 +52,8 @@ Route::resource('professores', TeacherController::class);
 Route::get('/planejamentos/criar', [PlanningController::class, 'create'])->name('planning.create'); //view criar
 Route::post('/planejamentos', [PlanningController::class, 'store'])->name('planning.store'); //salvar
 Route::get('/planejamentos', [PlanningController::class, 'index'])->name('planning.index'); //mostrar todos
-Route::post('/planejamentos/visualizar', [PlanningController::class, 'show'])->name('planning.show'); //mostrar específico
+Route::post('/planilha/visualizar', [PlanningController::class, 'simpleSearch'])->name('planning.simple'); //mostrar planejamento específico
+Route::post('/planejamentos/visualizar', [PlanningController::class, 'advancedSearch'])->name('planning.advanced'); //mostrar aba de planejamentos
 Route::get('/planejamentos/{id}', [PlanningController::class, 'edit'])->name('planning.edit'); //view editar
 Route::put('/planejamentos/{id}', [PlanningController::class, 'update'])->name('planning.update');  //editar
 Route::delete('/planejamentos/{id}', [PlanningController::class, 'delete'])->name('planning.delete'); //delete
