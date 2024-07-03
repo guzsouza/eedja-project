@@ -27,9 +27,6 @@ Route::get('/', function () {
 });
 
 //viewDashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 //Rotas de Serviços
 

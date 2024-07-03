@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout>  
     @section('title', 'Área do professor')
     <section class="section-container">
         <div class="card-container">
@@ -11,94 +11,93 @@
                 <div class="card-footer" style="padding: 20px 15px">
                     <div class="card-btn-container">
                         <div class="input-group">
-                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                            <a class="btn btn-primary btn-service" href="{{ route('planning.index') }}" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></a>
+                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-simple"><span>Visualizar</span></button>
+                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-simple"><ion-icon class="ionic-service" name="eye-outline"></ion-icon></button>
                         </div>
                         <div class="input-group d-flex justify-content-end">
-                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                            <button class="btn btn-success btn-service" type="button" data-bs-toggle="modal" data-bs-target="#create"><span>Adicionar</span></button>
+                            <button class="btn btn-success btn-service" type="button" data-bs-toggle="modal" data-bs-target="#create"><ion-icon class="ionic-service" name="add-circle-outline"></ion-icon></button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="card" style="width: 30rem">
                 <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
                 <div class="card-body">
-                    <h5 class="card-title">Planejamento</h5>
+                    <h5 class="card-title">Busca de planejamentos</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
                 </div>
                 <div class="card-footer" style="padding: 20px 15px">
                     <div class="card-btn-container">
-                        <div class="input-group">
-                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
-                        </div>
-                        <div class="input-group d-flex justify-content-end">
-                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 30rem">
-                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
-                <div class="card-body">
-                    <h5 class="card-title">Planejamento</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
-                </div>
-                <div class="card-footer" style="padding: 20px 15px">
-                    <div class="card-btn-container">
-                        <div class="input-group">
-                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
-                        </div>
-                        <div class="input-group d-flex justify-content-end">
-                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 30rem">
-                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
-                <div class="card-body">
-                    <h5 class="card-title">Planejamento</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
-                </div>
-                <div class="card-footer" style="padding: 20px 15px">
-                    <div class="card-btn-container">
-                        <div class="input-group">
-                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
-                        </div>
-                        <div class="input-group d-flex justify-content-end">
-                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card" style="width: 30rem">
-                <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
-                <div class="card-body">
-                    <h5 class="card-title">Planejamento</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
-                </div>
-                <div class="card-footer" style="padding: 20px 15px">
-                    <div class="card-btn-container">
-                        <div class="input-group">
-                            <div class="label-service card" style="background-color: #0D6EFDff">Visualizar</div>
-                            <button class="btn btn-primary btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="eye-outline"></button>
-                        </div>
-                        <div class="input-group d-flex justify-content-end">
-                            <div class="label-service card" style="background-color: #188251ff">Criar</div>
-                            <button class="btn btn-success btn-service" type="button" id="button-addon2"><ion-icon class="ionic-service" name="add-circle-outline"></button>
+                        <div class="input-group d-flex justify-content-center">
+                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-advanced"><span>Buscar</span></button>
+                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-advanced"><ion-icon class="ionic-service" name="search-outline"></ion-icon></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="confirm-simple" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmLabel">Planejamentos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <x-planning.simpleSearch
+                      :groups="$groups"
+                      :disciplines="$disciplines"
+                      :teachers="$teachers"
+                    />
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="submitForm()">Enviar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirm-advanced" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="confirmLabel">Planejamentos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <x-planning.advancedSearch
+                      :groups="$groups"
+                      :disciplines="$disciplines"
+                      :teachers="$teachers"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="createLabel">Planejamentos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <x-planning.form
+                        :disciplines="$disciplines"
+                        :groups="$groups"
+                    />
+                <div class="modal-footer">
+                    <button class="btn btn-success" onclick="submitForm()">Enviar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </x-app-layout>
 
 <style>
@@ -161,6 +160,11 @@
     }
 </style>
 
+<script>
+    function submitForm(){
+        document.getElementById('planningFilter').submit();
+    }
+</script>
 {{-- 
 #188251ff;
 #FFFFFFff;

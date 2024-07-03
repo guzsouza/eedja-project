@@ -1,79 +1,141 @@
 <x-app-layout>
     @section('title', 'Planejamento')
-    @if(count($plannings) > 0)
-    <div class="row d-flex justify-content-center" id="simpleSearch">
-        <div class="col-sm-11 card">
-            <table class="table table-hover">
-                <div class="row d-flex text-center mt-3">
-                    <div class="col-sm-4">
-                        <span style="font-size: 1.7rem">Turma: {{ $plannings[0]['group']['name'] }}</span>
-                    </div>
-                    <div class="col-sm-4">
-                        <span style="font-size: 1.7rem">Plano de aula / Cronograma de aulas</span>
-                    </div>
-                    <div class="col-sm-4">
-                        <span style="font-size: 1.7rem">{{ $plannings[0]['bimester'] }}º Bimestre - </span>
-                        <span style="font-size: 1.7rem">{{ $plannings[0]['year'] }}</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="row d-flex text-center">
-                    <div class="col-sm-3">
-                        <span style="font-size: 1.5rem">{{ $plannings[0]['teacher']['name'] }}</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span style="font-size: 1.5rem">Nº de aulas: {{ $plannings[0]['classes'] }}</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span style="font-size: 1.5rem">{{ $plannings[0]['discipline']['name'] }}</span>
-                    </div>
-                    <div class="col-sm-3">
-                        <span style="font-size: 1.5rem">Prazo: {{ $plannings[0]['startDate'] }} até {{ $plannings[0]['endDate'] }}</span>
-                    </div>
-                </div>
-                <hr>
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 8rem">Data</th>
-                        <th scope="col">Conteúdos</th>
-                        <th scope="col">Habilidades</th>
-                        <th scope="col">Recursos utilizados</th>
-                        <th scope="col">Metodologia</th>
-                        <th scope="col">Trabalhos</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($plannings as $planning)
-                    <tr>
-                        <td scope="row">{{ $planning['date'] }}</td>
-                        <td> {{ $planning['content'] }}</td>
-                        <td> {{ $planning['skills'] }}</td>
-                        <td> {{ $planning['resource'] }}</td>
-                        <td> {{ $planning['metodology'] }}</td>
-                        <td> {{ $planning['project'] }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Opções
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
-                                    <li><a class="dropdown-item" href="#">Editar</a></li>
-                                </ul>
+    <div class="row">
+        @if(count($plannings) > 0)        
+            <div class="container mt-1">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 d-flex">
+                        <div class="input-group">
+                            <div class="form-control d-grid text-center">
+                                <div class="form-control">
+                                    <h1><strong>{{ $plannings[0]['group']['name'] }} - {{ $plannings[0]['bimester'] }}º Bimestre de {{ $plannings[0]['year'] }}</strong></h1>
+                                </div>
+                                <div class="form-control d-flex justify-content-between">
+                                    <h3 class="col-sm-6 d-flex justify-content-center">Professor: {{ $plannings[0]['teacher']['name'] }}</h3>
+                                    <h3 class="col-sm-6 d-flex justify-content-center">Disciplina: {{ $plannings[0]['discipline']['name'] }}</h3>
+                                </div>
+                                <div class="form-control d-flex justify-content-between">
+                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Número de aulas: </strong>{{ $plannings[0]['classes'] }}</span></p>
+                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ $plannings[0]['startDate'] }} <strong> até </strong> {{ $plannings[0]['endDate'] }}</span></p>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @php
+                $count = 1;
+            @endphp
+            @foreach ($plannings as $planning)
+                <div class="container mt-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="btn-container-documentation">
+                                <button class="form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlanning{{ $planning['id'] }}" aria-expanded="false" aria-controls="collapseExample" onclick="toggleDrop(this)">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="planning-name">
+                                            <strong>{{ $count }}</strong> - {{ $planning['date'] }}
+                                            @php
+                                                $count++;
+                                            @endphp
+                                        </span>
+                                        <ion-icon name="chevron-down-outline"></ion-icon>
+                                    </div>
+                                </button>
+                                <div class="collapse btn-drop" id="collapsePlanning{{ $planning['id'] }}">
+                                    <div class="list-style">
+                                        <div class="link-drop">
+                                            <p><strong>Conteúdo: </strong>{{ $planning['content'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-style">
+                                        <div class="link-drop">
+                                            <p><strong>Habilidades: </strong>{{ $planning['skills'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-style">
+                                        <div class="link-drop">
+                                            <p><strong>Recursos: </strong>{{ $planning['resource'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-style">
+                                        <div class="link-drop">
+                                            <p><strong>Metodologia:</strong> {{ $planning['metodology'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-style">
+                                        <div class="link-drop">
+                                            <p><strong>Projetos: </strong>{{ $planning['project'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="list-style">
+                                        <div class="link-drop d-flex justify-content-between">
+                                            <a href="{{ route('planning.edit', ['id' => $planning['id']]) }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%">
+                                                <ion-icon class="icon-action" name="settings-outline" style="font-size: 1.5rem"></ion-icon>
+                                            </a>
+                                            <a class="btn btn-danger button-action d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#confirm-{{ $planning['id'] }}" style="width: 100%">
+                                                <ion-icon class="icon-action" name="trash-outline" style="font-size: 1.5rem"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="confirm-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="confirmLabel">Excluir planejamento</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Você tem certeza que deseja excluir este planejamento?
+                                <br>Esta ação é definitiva.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form action="{{ route('planning.delete', ['id' => $planning    ['id']]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" style="display: flex; align-items: center; padding: 0 15px;" data-bs-toggle="modal" data-bs-target="#confirm">
+                                        <ion-icon class="icon-action" name="trash-outline"></ion-icon>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            @endforeach    
+        @else
+            <div class="row">
+                <div class="container mt-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <div class="form-control align-items-center d-grid">
+                                    <span>
+                                        Nenhum registro encontrado
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        @endif
     </div>
-    @else
-        <p>Não foi encontrado um planejamento<a href="">Crie um agora!</a></p>
-    @endif
-    
     <style>
+        .planning-name {
+            display: inline-block;
+            white-space: nowrap;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90%;
+        }
+
         .btn{
             padding: 5px;
         }
@@ -81,6 +143,66 @@
             font-size: 1.5rem;
             display: flex;
             align-items: center;
+        }
+
+        .container{
+            margin: 10px;
+        }
+
+        .form-control{
+            padding: 15px;
+        }
+
+        .input-group .form-control,
+        .input-group .btn {
+            border-radius: 0;
+        }
+        .input-group .form-control {
+            border-top-left-radius: .25rem;
+            border-bottom-left-radius: .25rem;
+        }
+        .input-group .btn:last-child {
+            border-top-right-radius: .25rem;
+            border-bottom-right-radius: .25rem;
+        }
+        .input-group .btn:first-child {
+            border-right: none;
+        }
+
+        .search{
+            border-bottom: 1px solid #DEE2E6ff;
+            border-right: 1px solid #DEE2E6ff;
+            border-top: 1px solid #DEE2E6ff;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+        .btn-primary{
+            border-color: #009FEF;
+            background-color: #009FEF;
+            color: white;
+        }
+
+        .btn-primary:hover{
+            background-color: #0893d8;
+            border-color: #0893d8;
+        }
+
+        .link-drop{
+            padding: 10px;
+        }
+
+        .link-drop:hover{
+            background-color: #f4f4f5;
+        }
+
+        .list-style {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .list-style:hover {
+            text-decoration: none;
         }
     </style>
 </x-app-layout>

@@ -34,10 +34,9 @@ class PlanningController{
         $groups = $this->groupIndexService->getAll();
         $disciplines = $this->disciplineIndexService->getAll();
         $teachers = $this->teacherIndexService->getAll();
-        return view('components.planning.index', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines, 'teachers' => $teachers]);
+        return view('dashboard', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines, 'teachers' => $teachers]);
     }
     
-
     public function create(){
         return view('components.planning.create');
     }
