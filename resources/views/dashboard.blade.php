@@ -5,18 +5,30 @@
             <div class="card" style="width: 30rem">
                 <img src="/img/planning.jpg" class="card-img-top" alt="Planejamento">
                 <div class="card-body">
-                    <h5 class="card-title">Planejamento</h5>
+                    <h5 class="card-title">Planos de Aula</h5>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias recusandae at deserunt quo autem laboriosam facilis, neque </p>
                 </div>
                 <div class="card-footer" style="padding: 20px 15px">
                     <div class="card-btn-container">
                         <div class="input-group">
-                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-simple"><span>Visualizar</span></button>
-                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-simple"><ion-icon class="ionic-service" name="eye-outline"></ion-icon></button>
+                            <div data-bs-toggle="modal" data-bs-target="#confirm-simple">
+                                <x-buttonStyle
+                                    type="button"
+                                    color="primary"
+                                    action="Visualizar"
+                                    ionic="eye-outline"
+                                />
+                            </div>
                         </div>
                         <div class="input-group d-flex justify-content-end">
-                            <button class="btn btn-success btn-service" type="button" data-bs-toggle="modal" data-bs-target="#create"><span>Adicionar</span></button>
-                            <button class="btn btn-success btn-service" type="button" data-bs-toggle="modal" data-bs-target="#create"><ion-icon class="ionic-service" name="add-circle-outline"></ion-icon></button>
+                            <div data-bs-toggle="modal" data-bs-target="#create">
+                                <x-buttonStyle
+                                    type="button"
+                                    color="success"
+                                    action="Adicionar"
+                                    ionic="add-circle-outline"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -31,8 +43,14 @@
                 <div class="card-footer" style="padding: 20px 15px">
                     <div class="card-btn-container">
                         <div class="input-group d-flex justify-content-center">
-                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-advanced"><span>Buscar</span></button>
-                            <button class="btn btn-primary btn-service d-flex align-items-center" href="{{ route('planning.index') }}" data-bs-toggle="modal" data-bs-target="#confirm-advanced"><ion-icon class="ionic-service" name="search-outline"></ion-icon></button>
+                            <div data-bs-toggle="modal" data-bs-target="#confirm-advanced">
+                                <x-buttonStyle
+                                    type="button"
+                                    color="primary"
+                                    action="Buscar"
+                                    ionic="search-outline"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,9 +71,6 @@
                       :disciplines="$disciplines"
                       :teachers="$teachers"
                     />
-                <div class="modal-footer">
-                    <button class="btn btn-success" onclick="submitForm()">Enviar</button>
-                </div>
                 </div>
             </div>
         </div>
@@ -88,12 +103,10 @@
                 </div>
                 <div class="modal-body">
                     <x-planning.form
+                        update="{{ false }}"
                         :disciplines="$disciplines"
                         :groups="$groups"
                     />
-                <div class="modal-footer">
-                    <button class="btn btn-success" onclick="submitForm()">Enviar</button>
-                </div>
                 </div>
             </div>
         </div>
@@ -116,11 +129,6 @@
     .section-container{
         min-height: 100vh;  
     }
-    
-    .card-btn-container{
-        display: flex;
-        justify-content: space-between;
-    }
 
     .label-service{
         display: flex;
@@ -128,17 +136,6 @@
         padding: 10px 20px;
         color: white;
         border: none;
-    }
-
-    .btn-service{
-        border-left: 1px solid #cccc;
-    }
-
-    .ionic-service{
-        font-size: 1.5rem;
-        padding: 4px 1px;
-        display: flex;
-        align-items: center;
     }
 
     .box {

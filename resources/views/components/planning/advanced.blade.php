@@ -30,18 +30,9 @@
                                     <td>{{ $planning['year'] }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails{{ $loop->index }}" aria-expanded="false" aria-controls="collapseDetails{{ $loop->index }}">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails{{ $loop->index }}" aria-expanded="false" aria-controls="collapseDetails{{ $loop->index }}">
                                                 Detalhes
                                             </button>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Opções
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
-                                                    <li><a class="dropdown-item" href="#">Editar</a></li>
-                                                </ul>
-                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -54,6 +45,15 @@
                                             <strong>Recursos utilizados:</strong> {{ $planning['resource'] }}<br>
                                             <strong>Metodologia:</strong> {{ $planning['metodology'] }}<br>
                                             <strong>Trabalhos:</strong> {{ $planning['project'] }}<br>  
+                                            <div class="dropdown">
+                                                <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Opções
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Excluir</a></li>
+                                                    <li><a class="dropdown-item" href="#">Editar</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

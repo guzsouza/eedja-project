@@ -24,5 +24,14 @@
             <option value="3">3º Bimestre</option>
             <option value="4">4º Bimestre</option>
         </select>
+
+        <div class="mt-5">
+            <x-buttonStyle
+                type="submit"
+                color="success"
+                action="Buscar"
+                ionic="search-outline"
+            />
+        </div>
     </form>
 </div>

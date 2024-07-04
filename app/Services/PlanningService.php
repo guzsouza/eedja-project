@@ -34,6 +34,8 @@ class PlanningService{
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
+
+        dd('meu saco');
     }
 
     public function getPlannings(Request $request){

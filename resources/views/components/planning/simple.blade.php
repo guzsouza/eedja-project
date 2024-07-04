@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="list-style">
                                         <div class="link-drop d-flex justify-content-between">
-                                            <a href="{{ route('planning.edit', ['id' => $planning['id']]) }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%">
+                                            <a href="{{ route('planning.edit', ['id' => $planning['id']]) }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%" data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}">
                                                 <ion-icon class="icon-action" name="settings-outline" style="font-size: 1.5rem"></ion-icon>
                                             </a>
                                             <a class="btn btn-danger button-action d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#confirm-{{ $planning['id'] }}" style="width: 100%">
@@ -106,7 +106,24 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
+
+                <div class="modal fade" id="edit-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="createLabel">Planejamentos</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <x-planning.form
+                                    update="{{ true }}"
+                                    :planning="$planning"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>       
             @endforeach    
         @else
             <div class="row">
@@ -136,9 +153,6 @@
             max-width: 90%;
         }
 
-        .btn{
-            padding: 5px;
-        }
         .action-button{
             font-size: 1.5rem;
             display: flex;
@@ -151,30 +165,12 @@
 
         .form-control{
             padding: 15px;
+            border-radius: 8px;
         }
 
-        .input-group .form-control,
-        .input-group .btn {
-            border-radius: 0;
-        }
-        .input-group .form-control {
-            border-top-left-radius: .25rem;
-            border-bottom-left-radius: .25rem;
-        }
-        .input-group .btn:last-child {
-            border-top-right-radius: .25rem;
-            border-bottom-right-radius: .25rem;
-        }
-        .input-group .btn:first-child {
-            border-right: none;
-        }
-
-        .search{
-            border-bottom: 1px solid #DEE2E6ff;
-            border-right: 1px solid #DEE2E6ff;
-            border-top: 1px solid #DEE2E6ff;
-            border-radius: 5px;
-            background-color: transparent;
+        .form-select{
+            padding: 15px;
+            border-radius: 8px;
         }
 
         .btn-primary{
