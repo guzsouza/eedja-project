@@ -13,19 +13,8 @@ return new class extends Migration
     {
         Schema::create('plannings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('discipline_id');
-
-            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('discipline_id')->references('id')->on('disciplines')->onDelete('cascade')->onUpdate('cascade');
-
-            $table->Integer('bimester');
-            $table->year('year');
-            $table->Integer('classes');
-            $table->date('startDate');
-            $table->date('endDate');
+            $table->unsignedBigInteger('spreadsheet_id');
+            $table->foreign('spreadsheet_id')->references('id')->on('spreadsheets')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date');
             $table->string('content', 256);
             $table->string('skills', 256);

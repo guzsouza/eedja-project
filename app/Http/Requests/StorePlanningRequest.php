@@ -21,20 +21,13 @@ class StorePlanningRequest extends FormRequest{
     public function rules(): array
     {
         return [
-            'group_id',
-            'teacher_id',
-            'discipline_id',
-            'year',
-            'classes',
-            'startDate',
-            'endDate',
+            'spreadsheet_id',
             'date',
             'content',
             'skills',
             'resource',
             'metodology',
-            'project' => ['required'],
-            'bimester' => ['required', 'between:0,5']
+            'project' => ['required']
         ];
     }
 }

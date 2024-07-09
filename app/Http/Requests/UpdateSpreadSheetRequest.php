@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePlanningRequest extends FormRequest{
+class UpdateSpreadSheetRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -21,13 +22,15 @@ class UpdatePlanningRequest extends FormRequest{
     public function rules(): array
     {
         return [
-            'spreadsheet_id',
-            'date',
-            'content',
-            'skills',
-            'resource',
-            'metodology',
-            'project' => ['required']
+            'group_id',
+            'teacher_id',
+            'discipline_id',
+            'bimester',
+            'year',
+            'classes',
+            'startDate',
+            'endDate',
+            'bimester' => ['required', 'between:0,5']
         ];
     }
 }

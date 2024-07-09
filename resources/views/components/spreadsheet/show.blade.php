@@ -1,22 +1,32 @@
 <x-app-layout>
     @section('title', 'Planejamento')
     <div class="row">
-        @if(count($plannings) > 0)        
+        @if(isset($spreadsheet['plannings']) && count($spreadsheet['plannings']) > 0)
+            <x-status/>
+            <div class="container mt-1">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <a class="input-group d-flex justify-content-end list-style" data-bs-toggle="modal" data-bs-target="#createPlanning">
+                            <button class="btn btn-success">Adicionar planejamento</button>
+                        </a>
+                    </div>
+                </div>
+            </div>  
             <div class="container mt-1">
                 <div class="row justify-content-center">
                     <div class="col-md-8 d-flex">
                         <div class="input-group">
                             <div class="form-control d-grid text-center">
                                 <div class="form-control">
-                                    <h1><strong>{{ $plannings[0]['group']['name'] }} - {{ $plannings[0]['bimester'] }}º Bimestre de {{ $plannings[0]['year'] }}</strong></h1>
+                                    <h1><strong>{{ $spreadsheet['group']['name'] }} - {{ $spreadsheet['bimester'] }}º Bimestre de {{ $spreadsheet['year'] }}</strong></h1>
                                 </div>
                                 <div class="form-control d-flex justify-content-between">
-                                    <h3 class="col-sm-6 d-flex justify-content-center">Professor: {{ $plannings[0]['teacher']['name'] }}</h3>
-                                    <h3 class="col-sm-6 d-flex justify-content-center">Disciplina: {{ $plannings[0]['discipline']['name'] }}</h3>
+                                    <h3 class="col-sm-6 d-flex justify-content-center">Professor: {{ $spreadsheet['teacher']['name'] }}</h3>
+                                    <h3 class="col-sm-6 d-flex justify-content-center">Disciplina: {{ $spreadsheet['discipline']['name'] }}</h3>
                                 </div>
                                 <div class="form-control d-flex justify-content-between">
-                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Número de aulas: </strong>{{ $plannings[0]['classes'] }}</span></p>
-                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ $plannings[0]['startDate'] }} <strong> até </strong> {{ $plannings[0]['endDate'] }}</span></p>
+                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Número de aulas: </strong>{{ $spreadsheet['classes'] }}</span></p>
+                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ $spreadsheet['startDate'] }} <strong> até </strong> {{ $spreadsheet['endDate'] }}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +36,7 @@
             @php
                 $count = 1;
             @endphp
-            @foreach ($plannings as $planning)
+            @foreach ($spreadsheet['plannings'] as $planning)
                 <div class="container mt-1">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
@@ -70,10 +80,10 @@
                                     </div>
                                     <div class="list-style">
                                         <div class="link-drop d-flex justify-content-between">
-                                            <a href="{{ route('planning.edit', ['id' => $planning['id']]) }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%" data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}">
+                                            <a data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%" data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}">
                                                 <ion-icon class="icon-action" name="settings-outline" style="font-size: 1.5rem"></ion-icon>
                                             </a>
-                                            <a class="btn btn-danger button-action d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#confirm-{{ $planning['id'] }}" style="width: 100%">
+                                            <a class="btn btn-danger button-action d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#confirmDelete-{{ $planning['id'] }}" style="width: 100%">
                                                 <ion-icon class="icon-action" name="trash-outline" style="font-size: 1.5rem"></ion-icon>
                                             </a>
                                         </div>
@@ -84,11 +94,12 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="confirm-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
+                {{-- confirmDelete modal --}}
+                <div class="modal fade" id="confirmDelete-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="confirmLabel">Excluir planejamento</h1>
+                                <h1 class="modal-title fs-5" id="confirmDeleteLabel">Excluir planejamento</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -96,11 +107,11 @@
                                 <br>Esta ação é definitiva.</p>
                             </div>
                             <div class="modal-footer">
-                                <form action="{{ route('planning.delete', ['id' => $planning    ['id']]) }}" method="POST">
+                                <form action="{{ route('planning.delete', ['id' => $planning['id']]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" style="display: flex; align-items: center; padding: 0 15px;" data-bs-toggle="modal" data-bs-target="#confirm">
-                                        <ion-icon class="icon-action" name="trash-outline"></ion-icon>
+                                    <button class="btn btn-danger" type="submit" style="display: flex; align-items: center; padding: 5px 15px;">
+                                        <ion-icon class="action-button" name="trash-outline"></ion-icon>
                                     </button>
                                 </form>
                             </div>
@@ -108,7 +119,25 @@
                     </div>
                 </div>
 
-                <div class="modal fade" id="edit-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
+                {{-- Create Modal --}}
+                <div class="modal fade" id="createPlanning" tabindex="-1" aria-labelledby="createPlanningLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="createPlanningLabel">Planejamentos</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <x-planning.form action="{{ route('planning.store') }}" update="{{ false }}">
+                                    @section('id', $spreadsheet['id'])
+                                </x-planning.form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Edit modal --}}
+                <div class="modal fade" id="edit-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -117,13 +146,14 @@
                             </div>
                             <div class="modal-body">
                                 <x-planning.form
+                                    action="{{ route('planning.update', ['id' => $planning['id']]) }}"
                                     update="{{ true }}"
                                     :planning="$planning"
                                 />
                             </div>
                         </div>
                     </div>
-                </div>       
+                </div>
             @endforeach    
         @else
             <div class="row">
@@ -132,9 +162,27 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <div class="form-control align-items-center d-grid">
-                                    <span>
-                                        Nenhum registro encontrado
-                                    </span>
+                                    <h2 class="text-center">Nenhuma planilha encontrada</h2>
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <a href="{{ route('dashboard')}}" class="list-style">
+                                            <x-buttonStyle
+                                                type="submit"
+                                                color="primary"
+                                                action="Pesquisar Novamente"
+                                                ionic="arrow-back-outline"
+                                            />
+                                        </a>
+                            
+                                        {{-- <a href="{{ route('dashboard') }}" class="btn" style="display: flex; align-items:center; justify-content: space-between"><ion-icon name="arrow-back-outline"></ion-icon><span>Pesquise novamente</span></a> --}}
+                                        <a href="{{ route('dashboard')}}" class="list-style">
+                                            <x-buttonStyle
+                                                type="submit"
+                                                color="success"
+                                                action="Crie uma planilha"
+                                                ionic="add-outline"
+                                            />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -171,17 +219,6 @@
         .form-select{
             padding: 15px;
             border-radius: 8px;
-        }
-
-        .btn-primary{
-            border-color: #009FEF;
-            background-color: #009FEF;
-            color: white;
-        }
-
-        .btn-primary:hover{
-            background-color: #0893d8;
-            border-color: #0893d8;
         }
 
         .link-drop{

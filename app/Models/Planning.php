@@ -10,14 +10,7 @@ class Planning extends Model{
     protected $table = 'plannings';
 
     protected $fillable = [
-        'group_id',
-        'teacher_id',
-        'discipline_id',
-        'bimester',
-        'year',
-        'classes',
-        'startDate',
-        'endDate',
+        'spreadsheet_id',
         'date',
         'content',
         'skills',
@@ -34,15 +27,7 @@ class Planning extends Model{
 
     ];
 
-    //Eloquent Association
-    public function group(){
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-    public function teacher(){
-        return $this->belongsTo(Teacher::class, 'teacher_id');
-    }
-
-    public function discipline(){
-        return $this->belongsTo(Discipline::class, 'discipline_id');
+    public function spreadsheet(){
+        return $this->belongsTo(Spreadsheet::class, 'spreadsheet_id');
     }
 }

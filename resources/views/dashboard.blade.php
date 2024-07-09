@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-footer" style="padding: 20px 15px">
                     <div class="card-btn-container">
-                        <div class="input-group">
+                        <div class="input-group d-flex justify-content-center">
                             <div data-bs-toggle="modal" data-bs-target="#confirm-simple">
                                 <x-buttonStyle
                                     type="button"
@@ -20,7 +20,7 @@
                                 />
                             </div>
                         </div>
-                        <div class="input-group d-flex justify-content-end">
+                        {{-- <div class="input-group d-flex justify-content-end">
                             <div data-bs-toggle="modal" data-bs-target="#create">
                                 <x-buttonStyle
                                     type="button"
@@ -29,7 +29,7 @@
                                     ionic="add-circle-outline"
                                 />
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -66,10 +66,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <x-planning.simpleSearch
-                      :groups="$groups"
-                      :disciplines="$disciplines"
-                      :teachers="$teachers"
+                    <x-spreadsheet.search
+                        :groups="$groups"
+                        :disciplines="$disciplines"
+                        :teachers="$teachers"
                     />
                 </div>
             </div>
@@ -84,17 +84,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <x-planning.advancedSearch
-                      :groups="$groups"
-                      :disciplines="$disciplines"
-                      :teachers="$teachers"
+                    <x-planning.search
+                        :groups="$groups"
+                        :disciplines="$disciplines"
+                        :teachers="$teachers"
                     />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="create" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,6 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <x-planning.form
+                        action="{{ route('planning.store') }}"
                         update="{{ false }}"
                         :disciplines="$disciplines"
                         :groups="$groups"
@@ -110,7 +111,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>
 
 <style>

@@ -41,18 +41,12 @@ class PlanningController{
         return view('components.planning.create');
     }
 
+    public function show(Request $request){
+        return $this->spreadsheetService->getPlannings($request);
+    }
+
     public function store(StorePlanningRequest $request){
         return $this->planningService->add($request);
-    }
-
-    public function simpleSearch(Request $request){
-        $plannings = $this->planningService->getSpreadSheet($request);
-        return view('components.planning.simple', ['plannings' => $plannings]);
-    }
-
-    public function advancedSearch(Request $request){
-        $plannings = $this->planningService->getPlannings($request);
-        return view('components.planning.advanced', ['plannings' => $plannings]);
     }
 
     public function edit(int $id){
@@ -64,6 +58,7 @@ class PlanningController{
     }
 
     public function destroy(int $id){
-        return $this->planningService->delete($id);
+        $this->planningService->delete($id);
+        return redirect()->back()->with('status', 'Planejamento deletado');
     }
 }

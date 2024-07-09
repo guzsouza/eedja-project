@@ -1,5 +1,5 @@
 <div class="mb-3" style="padding: 10px 30px">
-    <form action="{{ route('planning.simple') }}" method="POST" id="planningFilter">
+    <form action="{{ route('spreadsheet.show') }}" method="get" id="planningFilter">
         @csrf
         <select class="form-select" aria-label="Default select example" name="group_id">
             <option selected disabled>Escolha o regimento</option>
@@ -25,7 +25,7 @@
             <option value="4">4º Bimestre</option>
         </select>
 
-        <div class="mt-5">
+        <div class="mt-5 d-flex justify-content-center">
             <x-buttonStyle
                 type="submit"
                 color="success"

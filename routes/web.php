@@ -1,18 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\ShiftController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\PlanningController;
-use App\Http\Controllers\DisciplineController;
-use App\Http\Controllers\GroupStudentController;
-use App\Http\Controllers\TeacherGroupAssociationController;
-use App\Http\Controllers\GroupDisciplineAssociationController;
-use App\Http\Controllers\TeacherDisciplineAssociationController;
 
 //middleware
 Route::middleware('auth')->group(function () {
@@ -45,15 +34,17 @@ Route::resource('estudantes', StudentController::class);
     //Professores
 Route::resource('professores', TeacherController::class);
 
+Route::get('/dashboard', [PlanningController::class, 'index'])->name('dashboard');
+
+//Planilhas
+Route::get('/planilha', [SpreadsheetController::class, 'show'])->name('spreadsheet.show');
+Route::get('/planejamentos', [PlanningController::class, 'show'])->name('planning.show');
+
+
     //Planejamentos
-Route::get('/planejamentos/criar', [PlanningController::class, 'create'])->name('planning.create'); //view criar
-Route::post('/planejamentos', [PlanningController::class, 'store'])->name('planning.store'); //salvar
-Route::get('/planejamentos', [PlanningController::class, 'index'])->name('planning.index'); //mostrar todos
-Route::post('/planilha/visualizar', [PlanningController::class, 'simpleSearch'])->name('planning.simple'); //mostrar planejamento específico
-Route::post('/planejamentos/visualizar', [PlanningController::class, 'advancedSearch'])->name('planning.advanced'); //mostrar aba de planejamentos
-Route::get('/planejamentos/{id}', [PlanningController::class, 'edit'])->name('planning.edit'); //view editar
+Route::post('/planejamentos/criar', [PlanningController::class, 'store'])->name('planning.store'); //salvar
 Route::put('/planejamentos/{id}', [PlanningController::class, 'update'])->name('planning.update');  //editar
-Route::delete('/planejamentos/{id}', [PlanningController::class, 'delete'])->name('planning.delete'); //delete
+Route::delete('/planejamentos/{id}', [PlanningController::class, 'destroy'])->name('planning.delete'); //delete
 
     //Grupos-e-disciplinas
 Route::prefix('/grupos-disciplinas')->group(function(){

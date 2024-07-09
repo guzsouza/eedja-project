@@ -38,7 +38,14 @@
                 </label>
             </div>
 
-            <div class="mt-5 d-flex justify-content-end">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="dateFilter">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Data
+                </label>
+            </div>            
+
+            <div class="mt-5 d-flex justify-content-center">
                 <div onclick="changeStep('step2')">
                     <x-buttonStyle
                         type="button"
@@ -53,7 +60,7 @@
 </div>
 
 <div class="mb-3" id="step2">
-    <form action="{{ route('planning.advanced') }}" method="POST" id="planningFilter">
+    <form action="" method="get" id="planningFilter">
         @csrf
         <select class="form-select" aria-label="Default select example" name="year" id="year">
             <option selected disabled>Escolha o ano</option>
@@ -90,6 +97,11 @@
                 <option value="{{ $discipline['id'] }}">{{ $discipline['name'] }}</option>
             @endforeach
         </select>
+
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingInput" name="date" id="date">
+            <label for="floatingInput">Data</label>
+        </div>
 
         <div class="mt-5 d-flex justify-content-between">
             <div>
@@ -135,6 +147,7 @@
         $("#bimester").hide();
         $("#teacher").hide();
         $("#discipline").hide();
+        $("#date").hide();
     }
 
     function changeStep(step) {
@@ -166,6 +179,9 @@
         }
         if(document.getElementById('disciplineFilter').checked){
             $("#disicpline").show();
+        }
+        if(document.getElementById('dateFilter').checked){
+            $("#date").show();
         }
     }
 </script>

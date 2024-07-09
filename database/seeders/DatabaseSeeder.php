@@ -11,17 +11,6 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use Database\Seeders\DisciplineSeeder;
-use Database\Seeders\GroupDisciplineAssociationSeeder;
-use Database\Seeders\GroupSeeder;
-use Database\Seeders\GroupStudentsSeeder;
-use Database\Seeders\PlanningSeeder;
-use Database\Seeders\ShiftSeeder;
-use Database\Seeders\StudentSeeder;
-use Database\Seeders\TeacherDisciplineAssociationSeeder;
-use Database\Seeders\TeacherGroupAssociationSeeder;
-use Database\Seeders\TeachersSeeder;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -39,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TeacherDisciplineAssociationSeeder::class);
         $this->call(TeacherGroupAssociationSeeder::class);
         $this->call(GroupStudentsSeeder::class);
+        $this->call(SpreadSheetSeeder::class);
         $this->call(PlanningSeeder::class);
     }
 }

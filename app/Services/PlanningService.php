@@ -34,45 +34,16 @@ class PlanningService{
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
-
-        dd('meu saco');
     }
 
-    public function getPlannings(Request $request){
+    public function getPlanningsBySpreadsheet(int $id){
         try{
-            $plannings = Planning::orderBy('date', 'ASC');
-            
-            if($request->has('bimester')){
-                $plannings->where('bimester', $request->bimester);
-            } 
-
-            if($request->has('group_id')){
-                $plannings->where('group_id', $request->group_id);
-            }
-
-            if ($request->has('teacher_id')) {
-                $plannings->where('teacher_id', $request->teacher_id);
-            }
-
-            if ($request->has('discipline_id')) {
-                $plannings->where('discipline_id', $request->discipline_id);
-            }
-
-            if ($request->has('year')) {
-                $plannings->where('year', $request->year);
-            }
-
-            return $plannings->get();
-        } catch (Exception $e){
-            return response()->json(['Details' => $e], 400);
-        }
-    }
-
-    public function getSpreadSheet(Request $request){
-        try{
-            return Planning::where('group_id', $request->group_id)
-                                ->where('discipline_id', $request->discipline_id)
-                                ->where('bimester', $request->bimester)->get();
+            $plannings = Planning::Where('spreadsheet_id', $id)
+                            ->orderBy('date', 'ASC')
+                            ->get()
+                            ->toArray();
+            $planningsData = $plannings;
+            return $planningsData;
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -82,14 +53,7 @@ class PlanningService{
         try{
             return DB::transaction(function() use($request){ 
                 $planning = Planning::create($request->only(
-                    'group_id',
-                    'teacher_id',
-                    'discipline_id',
-                    'bimester',
-                    'year',
-                    'classes',
-                    'startDate',
-                    'endDate',
+                    'spreadsheet_id',
                     'date',
                     'content',
                     'skills',
@@ -97,7 +61,6 @@ class PlanningService{
                     'metodology',
                     'project'
                 ));
-
                 return $planning;
             });
         } catch (Exception $e){
@@ -105,19 +68,68 @@ class PlanningService{
         }
     }
 
+    public function getPlannings(Request $request){
+        try{
+            if(hasOnly($request, 'date')){
+                $plannings = Planning::where('date', $request->date)
+                            ->orderBy('date', 'ASC')
+                            ->get();
+            }else{
+                $spreadsheets = Spreadsheet::orderBy('bimester', 'ASC');
+                
+                if($request->has('bimester')){
+                    $spreadsheets->where('bimester', $request->bimester);
+                } 
+
+                if($request->has('group_id')){
+                    $spreadsheets->where('group_id', $request->group_id);
+                }
+
+                if ($request->has('teacher_id')) {
+                    $spreadsheets->where('teacher_id', $request->teacher_id);
+                }
+
+                if ($request->has('discipline_id')) {
+                    $spreadsheets->where('discipline_id', $request->discipline_id);
+                }
+
+                if ($request->has('year')) {
+                    $spreadsheets->where('year', $request->year);
+                }
+
+                $spreadsheets->get();
+                $plannings = [];
+                foreach($spreadsheets as $spreadsheet){
+                    foreach($spreadsheet['plannings'] as $planning){
+                        $plannings[] = $planning;
+                    }
+                }
+                if($request->date){
+                    $date = $request->input('date');
+                    $filtered = array_filter($plannings, function($planning) use ($date){
+                        return stripos($planning['date'], $request->date) !== false;
+                    });
+                    $plannings  = $filtered;
+                }
+            }
+            return $plannings;
+            
+        } catch (Exception $e){
+            return response()->json(['Details' => $e], 400);
+        }
+    }
+
+    private function hasOnly($request, $field){
+        $fields = array_keys($request->all());
+        return count($fields) === 1 && in_array($field, $fields);
+    }
+
     public function update(int $id, UpdatePlanningRequest $request){
         try{
             return DB::transaction(function() use($id, $request){
                 $planning = $this->findPlanning($id);
                 $planning->fill($request->only(
-                    'group_id',
-                    'teacher_id',
-                    'discipline_id',
-                    'bimester',
-                    'year',
-                    'classes',
-                    'startDate',
-                    'endDate',
+                    'spreadsheet_id',
                     'date',
                     'content',
                     'skills',
