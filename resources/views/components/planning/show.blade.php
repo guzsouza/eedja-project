@@ -6,7 +6,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 d-flex">
                         <div class="input-group">
-                            <div class="form-control d-grid text-center">
+                            <div class="text-center form-control d-grid">
                                 <div class="form-control">
                                     Você buscou por:
                                     @foreach ($params as $param)
@@ -65,6 +65,11 @@
                                             </div>
                                         </div>
                                         <div class="list-style">
+                                            <div class="link-drop">
+                                                <p><strong>Planilha: </strong>Planilha correspondente</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-style">
                                             <div class="link-drop d-flex justify-content-between">
                                                 <a data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}" class="btn btn-primary button-action d-flex align-items-center justify-content-center" style="width: 100%" data-bs-toggle="modal" data-bs-target="#edit-{{ $planning['id'] }}">
                                                     <ion-icon class="icon-action" name="settings-outline" style="font-size: 1.5rem"></ion-icon>
@@ -85,20 +90,23 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="confirmDeleteLabel">Excluir planejamento</h1>
+                                    <h1 class="modal-title fs-5" id="confirmDeleteLabel">Exclusão de planejamento</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Você tem certeza que deseja excluir este planejamento?
                                     <br>Esta ação é definitiva.</p>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer d-flex justify-content-center">
                                     <form action="{{ route('planning.delete', ['id' => $planning['id']]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" style="display: flex; align-items: center; padding: 5px 15px;">
-                                            <ion-icon class="action-button" name="trash-outline"></ion-icon>
-                                        </button>
+                                        <x-buttonStyle
+                                            type="submit"
+                                            color="danger"
+                                            action="Remover"
+                                            ionic="trash-outline"
+                                        />
                                     </form>
                                 </div>
                             </div>
@@ -109,7 +117,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="createLabel">Planejamentos</h1>
+                                    <h1 class="modal-title fs-5" id="createLabel">Edição de Planejamento</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

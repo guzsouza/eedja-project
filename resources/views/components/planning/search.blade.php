@@ -98,7 +98,7 @@
             @endforeach
         </select>
 
-        <div class="form mt-3" id="dateInput" style="display: none;">
+        <div class="mt-3 form" id="dateInput" style="display: none;">
             <input type="date" class="form-control" name="date">
         </div>
 
@@ -141,17 +141,18 @@
     });
 
     function restartFilters(){
-        $("#yearSelect").hide().val("");
-        $("#groupSelect").hide().val("");
-        $("#bimesterSelect").hide().val("");
-        $("#teacherSelect").hide().val("");
-        $("#disciplineSelect").hide().val("");
+        document.getElementById('yearSelect').selectedIndex = 0;
+        document.getElementById('groupSelect').selectedIndex = 0;
+        document.getElementById('bimesterSelect').selectedIndex = 0;       
+        document.getElementById('teacherSelect').selectedIndex = 0;      
+        document.getElementById('disciplineSelect').selectedIndex = 0;
         $("#dateInput").hide().find('input').val("");
     }
 
     function changeStep(step) {
         if(step === 'step2'){
             $("#step1").fadeOut(500, function (){
+                restartFilters();
                 showFilters();
                 $("#step2").fadeIn(500);
             });
