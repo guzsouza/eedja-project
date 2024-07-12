@@ -4,36 +4,36 @@
             @method('PUT')
         @endif
         @csrf
-        <input type="hidden" name="spreadsheet_id" value="@yield('id')">
+        <input type="hidden" name="spreadsheet_id" value="{{ $id }}">
 
-        <div class="form-floating mb-3">
-            <input type="date" class="form-control" id="floatingInput" style="height: 80px" name="date" value="@isset($planning){{ old('date', $planning['date']) ?? '' }}@endisset" placeholder="Conteúdos">
-            <label for="floatingInput">Data</label>
+        <div class="mb-3">
+        <label for="data">Data</label>
+            <input type="date" class="form-control" id="data" name="date" value="@isset($planning){{ old('date', $planning['date']) ?? '' }}@endisset">
         </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" style="height: 80px" name="content" value="@isset($planning){{ old('content', $planning['content']) ?? '' }}@endisset" placeholder="Conteúdos">
-            <label for="floatingInput">Conteúdos</label>
+        <div class="mb-3">
+            <label for="content">Conteúdos</label>
+            <textarea class="form-control" id="content" style="height: 80px" name="content" placeholder="Conteúdos">@isset($planning){{ old('content', $planning['content']) ?? '' }}@endisset</textarea>
         </div>
                 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" style="height: 80px"name="skills" value="@isset($planning){{ old('skills', $planning['skills']) ?? '' }}@endisset" placeholder="Habilidades">
-            <label for="floatingInput">Habilidades</label>
+        <div class="mb-3">
+            <label for="skills">Habilidades</label>
+            <textarea class="form-control" id="skills" style="height: 80px"name="skills" placeholder="Habilidades">@isset($planning){{ old('skills', $planning['skills']) ?? '' }}@endisset</textarea>
         </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" style="height: 80px"name="resource" value="@isset($planning){{ old('resources', $planning['resource']) ?? '' }}@endisset" placeholder="Recursos">
-            <label for="floatingInput">Recursos</label>
+        <div class="mb-3">
+            <label for="resource">Recursos</label>
+            <textarea class="form-control" id="resource" style="height: 80px"name="resource" placeholder="Recursos">@isset($planning){{ old('resources', $planning['resource']) ?? '' }}@endisset</textarea>
         </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" style="height: 80px" name="metodology" value="@isset($planning){{ old('metodology', $planning['metodology']) ?? '' }}@endisset" placeholder="Metodologias adotadas">
-            <label for="floatingInput">Metodologia</label>
+        <div class="mb-3">
+            <label for="metodology">Metodologia</label>
+            <textarea class="form-control" id="metodology" style="height: 80px" name="metodology" placeholder="Metodologias adotadas">@isset($planning){{ old('metodology', $planning['metodology']) ?? '' }}@endisset</textarea>
         </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" style="height: 80px" name="project" value="@isset($planning){{ old('project', $planning['project']) ?? '' }}@endisset" placeholder="Trabalhos e projetos">
-            <label for="floatingInput">Projetos</label>
+        <div class="mb-3">
+            <label for="project">Projetos</label>
+            <textarea class="form-control" id="project" style="height: 80px" name="project" placeholder="Trabalhos e projetos">@isset($planning){{ old('project', $planning['project']) ?? '' }}@endisset</textarea>
         </div>
 
         @if($update)

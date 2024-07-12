@@ -3,11 +3,14 @@
 namespace App\Services;
 
 use App\Models\Planning;
+use App\Models\Spreadsheet;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePlanningRequest;
 use App\Http\Requests\UpdatePlanningRequest;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Carbon\Carbon;
+use Illuminate\Http\Response;
 
 class PlanningService{
     private function findPlanning(int $id){
@@ -70,13 +73,13 @@ class PlanningService{
 
     public function getPlannings(Request $request){
         try{
-            if(hasOnly($request, 'date')){
+            if($this->hasOnly($request, 'date')){
                 $plannings = Planning::where('date', $request->date)
                             ->orderBy('date', 'ASC')
                             ->get();
             }else{
-                $spreadsheets = Spreadsheet::orderBy('bimester', 'ASC');
-                
+                $spreadsheets = Spreadsheet::with('plannings');
+
                 if($request->has('bimester')){
                     $spreadsheets->where('bimester', $request->bimester);
                 } 
@@ -97,19 +100,20 @@ class PlanningService{
                     $spreadsheets->where('year', $request->year);
                 }
 
-                $spreadsheets->get();
+                $spreadsheets = $spreadsheets->get();
                 $plannings = [];
                 foreach($spreadsheets as $spreadsheet){
                     foreach($spreadsheet['plannings'] as $planning){
                         $plannings[] = $planning;
                     }
                 }
-                if($request->date){
-                    $date = $request->input('date');
+
+                if ($request->has('date')){
+                    $date = Carbon::parse($request->input('date'))->format('Y-m-d');
                     $filtered = array_filter($plannings, function($planning) use ($date){
-                        return stripos($planning['date'], $request->date) !== false;
+                        return isset($planning['date']) && Carbon::parse($planning['date'])->format('Y-m-d') === $date;
                     });
-                    $plannings  = $filtered;
+                    $plannings = array_values($filtered);
                 }
             }
             return $plannings;
@@ -121,7 +125,7 @@ class PlanningService{
 
     private function hasOnly($request, $field){
         $fields = array_keys($request->all());
-        return count($fields) === 1 && in_array($field, $fields);
+        return count($fields) === 2 && in_array($field, $fields);
     }
 
     public function update(int $id, UpdatePlanningRequest $request){

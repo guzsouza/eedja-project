@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePlanningRequest;
 use App\Http\Requests\UpdatePlanningRequest;
 
-
+use Illuminate\Http\Response;
 use App\Services\PlanningService;
 use App\Services\GroupService;
 use App\Services\DisciplineService;
@@ -42,19 +42,22 @@ class PlanningController{
     }
 
     public function show(Request $request){
-        return $this->spreadsheetService->getPlannings($request);
+        if($request->date === NULL){
+            $request->offsetUnset('date');
+        }
+        $plannings = $this->planningService->getPlannings($request);
+        $params = $request->except('_token');
+        return view('components.planning.show', ['plannings' => $plannings, 'params' => $params]);
     }
 
     public function store(StorePlanningRequest $request){
-        return $this->planningService->add($request);
-    }
-
-    public function edit(int $id){
-        return $this->planningService->getById($id);
+        $this->planningService->add($request);
+        return redirect()->back()->with('status', 'Planejamento criado com sucesso!');
     }
 
     public function update(int $id, UpdatePlanningRequest $request){
-        return $this->planningService->update($id, $request);
+        $this->planningService->update($id, $request);
+        return redirect()->back()->with('status', 'Planejamento editado com sucesso!');
     }
 
     public function destroy(int $id){

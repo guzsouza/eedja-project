@@ -23,7 +23,7 @@ class DisciplineService{
 
     public function getById(int $id){
         try{
-            return response()->json(['Está funcionando', $this->findDiscipline($id)]);
+            return $this->findDiscipline($id)->toArray();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

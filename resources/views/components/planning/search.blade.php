@@ -5,42 +5,42 @@
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="yearFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="yearFilter">
                   Ano
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="groupFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="groupFilter">
                   Turma
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="bimesterFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="bimesterFilter">
                   Bimestre
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="teacherFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="teacherFilter">
                   Professor
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="disciplineFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="disciplineFilter">
                   Disciplina
                 </label>
             </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="dateFilter">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="dateFilter">
                   Data
                 </label>
             </div>            
@@ -59,48 +59,47 @@
     </div>
 </div>
 
-<div class="mb-3" id="step2">
-    <form action="" method="get" id="planningFilter">
+<div class="mb-3" id="step2" style="display: none;">
+    <form action="{{ route('planning.show') }}" method="get" id="planningFilter">
         @csrf
-        <select class="form-select" aria-label="Default select example" name="year" id="year">
-            <option selected disabled>Escolha o ano</option>
+        <select class="form-select" aria-label="Default select example" name="year" id="yearSelect" style="display: none;">
+            <option selected disabled value="">Escolha o ano</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
             <option value="2025">2025</option>
         </select>
 
-        <select class="mt-3 form-select" aria-label="Default select example" name="group_id" id="group">
-            <option selected disabled>Escolha o regimento</option>
+        <select class="mt-3 form-select" aria-label="Default select example" name="group_id" id="groupSelect" style="display: none;">
+            <option selected disabled value="">Escolha o regimento</option>
             @foreach ($groups as $group)
                 <option value="{{ $group['id'] }}">{{ $group['name'] }}</option>
             @endforeach
         </select>
 
-        <select class="mt-3 form-select" aria-label="Default select example" name="bimester" id="bimester">
-            <option selected disabled>Escolha o bimestre</option>
+        <select class="mt-3 form-select" aria-label="Default select example" name="bimester" id="bimesterSelect" style="display: none;">
+            <option selected disabled value="">Escolha o bimestre</option>
             <option value="1">1º Bimestre</option>
             <option value="2">2º Bimestre</option>
             <option value="3">3º Bimestre</option>
             <option value="4">4º Bimestre</option>
         </select>
                             
-        <select class="mt-3 form-select" aria-label="Default select example" name="teacher_id" id="teacher">
-            <option selected disabled>Escolha o professor</option>
+        <select class="mt-3 form-select" aria-label="Default select example" name="teacher_id" id="teacherSelect" style="display: none;">
+            <option selected disabled value="">Escolha o professor</option>
             @foreach ($teachers as $teacher)
                 <option value="{{ $teacher['id'] }}">{{ $teacher['name'] }}</option>
             @endforeach
         </select>
         
-        <select class="mt-3 form-select" aria-label="Default select example" name="discipline_id" id="discipline">
-            <option selected disabled>Escolha a disciplina</option>
+        <select class="mt-3 form-select" aria-label="Default select example" name="discipline_id" id="disciplineSelect" style="display: none;">
+            <option selected disabled value="">Escolha a disciplina</option>
             @foreach ($disciplines as $discipline)
                 <option value="{{ $discipline['id'] }}">{{ $discipline['name'] }}</option>
             @endforeach
         </select>
 
-        <div class="form-floating mb-3">
-            <input type="date" class="form-control" id="floatingInput" name="date" id="date">
-            <label for="floatingInput">Data</label>
+        <div class="form mt-3" id="dateInput" style="display: none;">
+            <input type="date" class="form-control" name="date">
         </div>
 
         <div class="mt-5 d-flex justify-content-between">
@@ -121,7 +120,7 @@
             <div>
                 <div class="card-btn-container">
                     <div class="input-group d-flex justify-content-center">
-                        <div onclick="changeStep('step1')">
+                        <div>
                             <x-buttonStyle
                                 type="submit"
                                 color="success"
@@ -137,17 +136,17 @@
 </div>
 
 <script>
-    restartFilters();
-    
+    $(document).ready(function() {
+        restartFilters();
+    });
+
     function restartFilters(){
-        $("#step1").show();
-        $("#step2").hide();
-        $("#year").hide();
-        $("#group").hide();
-        $("#bimester").hide();
-        $("#teacher").hide();
-        $("#discipline").hide();
-        $("#date").hide();
+        $("#yearSelect").hide().val("");
+        $("#groupSelect").hide().val("");
+        $("#bimesterSelect").hide().val("");
+        $("#teacherSelect").hide().val("");
+        $("#disciplineSelect").hide().val("");
+        $("#dateInput").hide().find('input').val("");
     }
 
     function changeStep(step) {
@@ -165,23 +164,28 @@
     }
 
     function showFilters(){
-        if(document.getElementById('yearFilter').checked){
-            $("#year").show();
+        if($('#yearFilter').is(':checked')){
+            $("#yearSelect").show();
         }
-        if(document.getElementById('groupFilter').checked){
-            $("#group").show();
+
+        if($('#groupFilter').is(':checked')){
+            $("#groupSelect").show();
         }
-        if(document.getElementById('bimesterFilter').checked){
-            $("#bimester").show();
+
+        if($('#bimesterFilter').is(':checked')){
+            $("#bimesterSelect").show();
         }
-        if(document.getElementById('teacherFilter').checked){
-            $("#teacher").show();
+
+        if($('#teacherFilter').is(':checked')){
+            $("#teacherSelect").show();
         }
-        if(document.getElementById('disciplineFilter').checked){
-            $("#disicpline").show();
+
+        if($('#disciplineFilter').is(':checked')){
+            $("#disciplineSelect").show();
         }
-        if(document.getElementById('dateFilter').checked){
-            $("#date").show();
+
+        if($('#dateFilter').is(':checked')){
+            $("#dateInput").show();
         }
     }
 </script>

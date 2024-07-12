@@ -117,6 +117,7 @@
     </header>
 
     <div class="content">
+        <x-status/>
         {{ $slot }}
     </div>
 

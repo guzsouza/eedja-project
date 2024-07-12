@@ -29,8 +29,7 @@ class StoreSpreadSheetRequest extends FormRequest
             'year',
             'classes',
             'startDate',
-            'endDate',
-            'bimester' => ['required', 'between:0,5']
+            'endDate' => ['required']
         ];
     }
 }

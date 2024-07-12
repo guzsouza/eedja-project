@@ -45,20 +45,17 @@ class SpreadsheetService{
 
     public function add(StoreSpreadsheetRequest $request){
         try{
-            return DB::transaction(function() use($request){ 
-                $spreadsheet = Spreadsheet::create($request->only(
-                    'group_id',
-                    'teacher_id',
-                    'discipline_id',
-                    'bimester',
-                    'year',
-                    'classes',
-                    'startDate',
-                    'endDate',
-                ));
-
-                return $spreadsheet;
-            });
+            $spreadsheet = Spreadsheet::create($request->only(
+                'group_id',
+                'teacher_id',
+                'discipline_id',
+                'bimester',
+                'year',
+                'classes',
+                'startDate',
+                'endDate'
+            ));
+            return $spreadsheet->load('plannings', 'teacher', 'discipline', 'group');
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
@@ -79,7 +76,7 @@ class SpreadsheetService{
                     'endDate',
                 ))->save();
 
-                return $spreadsheet;
+                return $spreadsheet->load('plannings', 'teacher', 'discipline', 'group');
             });
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);

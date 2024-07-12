@@ -22,6 +22,7 @@ class UpdateSpreadSheetRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id',
             'group_id',
             'teacher_id',
             'discipline_id',
@@ -29,8 +30,7 @@ class UpdateSpreadSheetRequest extends FormRequest
             'year',
             'classes',
             'startDate',
-            'endDate',
-            'bimester' => ['required', 'between:0,5']
+            'endDate' => ['required'],
         ];
     }
 }

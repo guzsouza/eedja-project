@@ -1,103 +1,28 @@
 <x-app-layout>
     @section('title', 'Planejamento')
     <div class="row">
-        @if(isset($spreadsheetNotFound))
-            <div class="row">
-                <div class="container mt-1">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="input-group">
-                                <div class="form-control align-items-center d-grid">
-                                    <h2 class="text-center">Nenhuma planilha encontrada</h2>
-                                    <div class="d-flex justify-content-around align-items-center">
-                                        <a href="{{ route('dashboard')}}" class="list-style">
-                                            <x-buttonStyle
-                                                type="submit"
-                                                color="primary"
-                                                action="Pesquisar Novamente"
-                                                ionic="arrow-back-outline"
-                                            />
-                                        </a>
-                            
-                                        <a data-bs-toggle="modal" data-bs-target="#createSpreadsheet" class="list-style">
-                                            <x-buttonStyle
-                                                type="submit"
-                                                color="success"
-                                                action="Crie uma planilha"
-                                                ionic="add-outline"
-                                            />
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-
-            {{-- create spreadsheet modal --}}
-            <div class="modal fade" id="createSpreadsheet" tabindex="-1" aria-labelledby="createSpreadsheetLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="createSpreadsheetLabel">Planejamentos</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <x-spreadsheet.form
-                                action="{{ route('spreadsheet.store') }}"
-                                update="{{ false }}"
-                                :params="$params"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @else
-            <div class="container mt-1">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="d-flex justify-content-between teste">
-                            <div>
-                                <a class="input-group d-flex justify-content-end list-style" data-bs-toggle="modal" data-bs-target="#editSpreadsheet">
-                                    <button class="btn btn-primary">Editar Planilha</button>
-                                </a>
-                            </div>
-                            <div>
-                                <a class="input-group d-flex justify-content-end list-style" data-bs-toggle="modal" data-bs-target="#createPlanning">
-                                    <button class="btn btn-success">Adicionar planejamento</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
+        @if(isset($plannings))
             <div class="container mt-1">
                 <div class="row justify-content-center">
                     <div class="col-md-8 d-flex">
                         <div class="input-group">
                             <div class="form-control d-grid text-center">
                                 <div class="form-control">
-                                    <h1><strong>{{ $spreadsheet['group']['name'] }} - {{ $spreadsheet['bimester'] }}º Bimestre de {{ $spreadsheet['year'] }}</strong></h1>
-                                </div>
-                                <div class="form-control d-flex justify-content-between">
-                                    <h3 class="col-sm-6 d-flex justify-content-center">Professor: {{ $spreadsheet['teacher']['name'] }}</h3>
-                                    <h3 class="col-sm-6 d-flex justify-content-center">Disciplina: {{ $spreadsheet['discipline']['name'] }}</h3>
-                                </div>
-                                <div class="form-control d-flex justify-content-between">
-                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Número de aulas: </strong>{{ $spreadsheet['classes'] }}</span></p>
-                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ $spreadsheet['startDate'] }} <strong> até </strong> {{ $spreadsheet['endDate'] }}</span></p>
+                                    Você buscou por:
+                                    @foreach ($params as $param)
+                                        <p>{{ $param }}</p>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @if(count($spreadsheet['plannings']) > 0)
+            @if(count($plannings) > 0)
                 @php
                     $count = 1;
                 @endphp
-                @foreach ($spreadsheet['plannings'] as $planning)
+                @foreach ($plannings as $planning)
                     <div class="container mt-1">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
@@ -179,26 +104,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Create Modal --}}
-                    <div class="modal fade" id="createPlanning" tabindex="-1" aria-labelledby="createPlanningLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="createPlanningLabel">Planejamentos</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <x-planning.form
-                                        action="{{ route('planning.store') }}" 
-                                        update="{{ false }}"
-                                        id="{{ $planning['spreadsheet_id'] }}"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {{-- Edit modal --}}
                     <div class="modal fade" id="edit-{{ $planning['id'] }}" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -220,15 +125,23 @@
                     </div>
                 @endforeach
             @else
-                <div class="container mt-1">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="btn-container-documentation">
-                                <div class="form-control">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="planning-name">
-                                            Não há planejamentos
-                                        </span>
+                <div class="row">
+                    <div class="container mt-1">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="form-control align-items-center d-grid">
+                                        <h2 class="text-center">Nenhum planejamento encontrado</h2>
+                                        <div class="d-flex justify-content-around align-items-center">
+                                            <a href="{{ route('dashboard')}}" class="list-style">
+                                                <x-buttonStyle
+                                                    type="submit"
+                                                    color="primary"
+                                                    action="Pesquisar Novamente"
+                                                    ionic="arrow-back-outline"
+                                                />
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -236,26 +149,33 @@
                     </div>
                 </div>
             @endif
-            {{-- edit spreadsheet modal --}}
-            <div class="modal fade" id="editSpreadsheet" tabindex="-1" aria-labelledby="editSpreadsheetLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="editSpreadsheetLabel">Planejamentos</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <x-spreadsheet.form
-                                action="{{ route('spreadsheet.update') }}"
-                                update="{{ true }}"
-                                :spreadsheet="$spreadsheet"
-                            />
+        @else
+        <div class="row">
+            <div class="container mt-1">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <div class="form-control align-items-center d-grid">
+                                <h2 class="text-center">Nenhum planejamento encontrado</h2>
+                                <div class="d-flex justify-content-around align-items-center">
+                                    <a href="{{ route('dashboard')}}" class="list-style">
+                                        <x-buttonStyle
+                                            type="submit"
+                                            color="primary"
+                                            action="Pesquisar Novamente"
+                                            ionic="arrow-back-outline"
+                                        />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         @endif
     </div>
+    
     <style>
         .planning-name {
             display: inline-block;

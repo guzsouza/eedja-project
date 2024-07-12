@@ -23,7 +23,7 @@ class GroupService{
 
     public function getById(int $id){
         try{
-            return $this->findGroup($id);
+            return $this->findGroup($id)->toArray();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }

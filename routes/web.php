@@ -12,8 +12,12 @@ Route::middleware('auth')->group(function () {
 
 //viewWelcome
 Route::get('/', function () {
-    return view('welcome');
+    return view('components.spreadsheet.teste');
 });
+
+Route::post('/planilha/criar', [SpreadsheetController::class, 'store'])->name('spreadsheet.store');
+
+Route::post('/planilha/editar', [SpreadsheetController::class, 'update'])->name('spreadsheet.update');
 
 //viewDashboard
 
