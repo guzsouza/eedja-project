@@ -36,10 +36,6 @@ class PlanningController{
         $teachers = $this->teacherIndexService->getAll();
         return view('dashboard', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines, 'teachers' => $teachers]);
     }
-    
-    public function create(){
-        return view('components.planning.create');
-    }
 
     public function show(Request $request){
         if($request->date === NULL){
@@ -56,6 +52,7 @@ class PlanningController{
     }
 
     public function update(int $id, UpdatePlanningRequest $request){
+        // dd($request->all());
         $this->planningService->update($id, $request);
         return redirect()->back()->with('status', 'Planejamento editado com sucesso!');
     }

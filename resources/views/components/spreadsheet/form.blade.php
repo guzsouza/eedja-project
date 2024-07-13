@@ -1,70 +1,72 @@
 <div class="mb-3" style="padding: 10px 30px">
     <form action="{{ $action }}" method="POST" id="planningForm">
         @csrf
-        <div class="mb-3">
-            <label for="group">Turma</label>
-            <div class="form-control" id="group" aria-label="label select example">
-                @if($update) {{ $spreadsheet['group']['name'] }} @else {{ $params['group']['name'] }} @endif
-            </div>
-        </div>
-        <input type="hidden" name="group_id" value="@if($update){{ $spreadsheet['group']['id'] }}@else{{ $params['group']['id'] }}@endif">
+        <x-labelValueField 
+            id="group" 
+            label="Turma" 
+            value="{{ $update ? $spreadsheet['group']['name'] : $params['group']['name'] }}"
+            name="group_id" 
+            hiddenValue="{{ $update ? $spreadsheet['group']['id'] : $params['group']['id'] }}"
+        />
 
-        <div class="mb-3">
-            <label for="discipline">Disciplina</label>
-            <div class="form-control" id="discipline" aria-label="label select example">
-                @if($update) {{ $spreadsheet['discipline']['name'] }} @else {{ $params['discipline']['name'] }} @endif
-            </div>
-        </div>
-        <input type="hidden" name="discipline_id" value="@if($update){{ $spreadsheet['discipline']['id'] }}@else{{ $params['discipline']['id'] }}@endif">
+        <x-labelValueField 
+            id="discipline" 
+            label="Disciplina" 
+            value="{{ $update ? $spreadsheet['discipline']['name'] : $params['discipline']['name'] }}"
+            name="discipline_id" 
+            hiddenValue="{{ $update ? $spreadsheet['discipline']['id'] : $params['discipline']['id'] }}"
+        />
 
-        <div class="mb-3">
-            <label for="bimester">Bimestre</label>
-            <div class="form-control" id="bimester" aria-label="label select example">
-                @if($update) {{ $spreadsheet['bimester'] }}º @else {{ $params['bimester'] }}º @endif Bimestre
-            </div>
-        </div>
-        <input type="hidden" name="bimester" value="@if($update){{ $spreadsheet['bimester'] }}@else{{ $params['bimester'] }}@endif">
+        <x-labelValueField 
+            id="bimester" 
+            label="Bimestre" 
+            value="{{ $update ? $spreadsheet['bimester'] . 'º' : $params['bimester'] . 'º' }} Bimestre"
+            name="bimester" 
+            placeholder="Bimestre"
+            hiddenValue="{{ $update ? $spreadsheet['bimester'] : $params['bimester'] }}"
+        />
 
-        <div class="form- mb-3">
-            <label for="classes">Número de aulas</label>
-            <input type="number" class="form-control" id="classes" name="classes" value="@isset($spreadsheet){{ old('classes', $spreadsheet['classes']) ?? '' }}@endisset">
-        </div>
+        <x-inputField 
+            id="classes" 
+            label="Número de aulas" 
+            type="number" 
+            name="classes"
+            placeholder="Números de aulas"
+            value="{{ old('classes', $update ? optional($spreadsheet)->classes : '') }}" 
+        />
 
-        <div class="form- mb-3">
-            <label for="startDate">Data de início</label>
-            <input type="date" class="form-control" id="startDate" name="startDate" value="@isset($spreadsheet){{ old('endDate', $spreadsheet['endDate']) ?? '' }}@endisset">
-        </div>
+        <x-inputField 
+            id="startDate" 
+            label="Data de início" 
+            type="date" 
+            name="startDate"
+            placeholder="Data inicial"
+            value="{{ old('startDate', $update ? optional($spreadsheet)->startDate : '' ) }}" 
+        />
 
-        <div class="form- mb-3">
-            <label for="endDate">Data final</label>
-            <input type="date" class="form-control" id="endDate" name="endDate" value="@isset($spreadsheet){{ old('endDate', $spreadsheet['endDate']) ?? '' }}@endisset">
-        </div>
+        <x-inputField 
+            id="endDate" 
+            label="Data final" 
+            type="date" 
+            name="endDate"
+            placeholder="Data Final"
+            value="{{ old('endDate', $update ? optional($spreadsheet)->endDate : '' ) }}" 
+        />
 
         <input type="hidden" name="teacher_id" value="1">
         <input type="hidden" name="year" value="{{ now()->year }}">
 
         @if($update)
-            <input type="hidden" name="id" value="{{ $spreadsheet['id'] }}">
+            <input type="hidden" name="id" value="{{ optional($spreadsheet)->id }}">
         @endif
 
-        @if($update)
-            <div class="mt-5">
-                <x-buttonStyle
-                    type="submit"
-                    color="success"
-                    action="Atualizar"
-                    ionic="checkmark-outline"
-                />
-            </div>
-        @else
-            <div class="mt-5">
-                <x-buttonStyle
-                    type="submit"
-                    color="success"
-                    action="Enviar"
-                    ionic="paper-plane-outline"
-                />
-            </div>
-        @endif
+        <div class="mt-5">
+            <x-buttonStyle
+                type="submit"
+                color="success"
+                action="{{ $update ? 'Atualizar' : 'Enviar' }}"
+                ionic="{{ $update ? 'checkmark-outline' : 'paper-plane-outline' }}"
+            />
+        </div>
     </form>
 </div>

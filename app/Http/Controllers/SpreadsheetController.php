@@ -24,7 +24,12 @@ class SpreadsheetController{
     //POST /planilha/criar
     public function store(StoreSpreadSheetRequest $request){
         $spreadsheet = $this->spreadsheetService->add($request);
-        return view('components.spreadsheet.show', ['spreadsheet' => $spreadsheet]);
+        $request = new Request([
+            'bimester' => $spreadsheet['bimester'],
+            'group_id' => $spreadsheet['group_id'],
+            'discipline_id' => $spreadsheet['discipline_id']
+        ]); 
+        return redirect()->route('spreadsheet.show', $request);
     }
 
     //GET /planilha/
@@ -47,6 +52,7 @@ class SpreadsheetController{
     //PUT /planilha/editar/id
     public function update(UpdateSpreadsheetRequest $request){
         $id = $request->id;
+        // dd($request->all());
         $this->spreadsheetService->update($id, $request);
         return redirect()->back()->with('status', 'Planilha editada com sucesso!');
     }

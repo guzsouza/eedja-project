@@ -20,16 +20,6 @@
                                 />
                             </div>
                         </div>
-                        {{-- <div class="input-group d-flex justify-content-end">
-                            <div data-bs-toggle="modal" data-bs-target="#create">
-                                <x-buttonStyle
-                                    type="button"
-                                    color="success"
-                                    action="Adicionar"
-                                    ionic="add-circle-outline"
-                                />
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -93,25 +83,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="modal fade" id="create" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="createLabel">Planejamentos</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <x-planning.form
-                        action="{{ route('planning.store') }}"
-                        update="{{ false }}"
-                        :disciplines="$disciplines"
-                        :groups="$groups"
-                    />
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </x-app-layout>
 
 <style>

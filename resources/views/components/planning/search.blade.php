@@ -3,47 +3,35 @@
         <div>
             <h5>Filtrar por:</h5>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="yearFilter">
-                <label class="form-check-label" for="yearFilter">
-                  Ano
-                </label>
-            </div>
+            <x-checkField
+                id="yearFilter"
+                label="Ano"
+            />
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="groupFilter">
-                <label class="form-check-label" for="groupFilter">
-                  Turma
-                </label>
-            </div>
+            <x-checkField
+                id="groupFilter"
+                label="Turma"
+            />
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="bimesterFilter">
-                <label class="form-check-label" for="bimesterFilter">
-                  Bimestre
-                </label>
-            </div>
+            <x-checkField
+                id="bimesterFilter"
+                label="Bimestre"
+            />
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="teacherFilter">
-                <label class="form-check-label" for="teacherFilter">
-                  Professor
-                </label>
-            </div>
+            <x-checkField
+                id="teacherFilter"
+                label="Professor"
+            />
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="disciplineFilter">
-                <label class="form-check-label" for="disciplineFilter">
-                  Disciplina
-                </label>
-            </div>
+            <x-checkField
+                id="disciplineFilter"
+                label="Disciplina"
+            />
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="dateFilter">
-                <label class="form-check-label" for="dateFilter">
-                  Data
-                </label>
-            </div>            
+            <x-checkField
+                id="dateFilter"
+                label="Data"
+            />
 
             <div class="mt-5 d-flex justify-content-center">
                 <div onclick="changeStep('step2')">
@@ -62,46 +50,74 @@
 <div class="mb-3" id="step2" style="display: none;">
     <form action="{{ route('planning.show') }}" method="get" id="planningFilter">
         @csrf
-        <select class="form-select" aria-label="Default select example" name="year" id="yearSelect" style="display: none;">
-            <option selected disabled value="">Escolha o ano</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-        </select>
+        <x-selectField
+            name="year"
+            id="yearSelect"
+            hide="{{ true }}"
+            :options="[
+                '2023',
+                '2024',
+                '2025'
+            ]"
+            placeholder="Selecione o ano"
+            arrayOptions="{{ false }}"
+        />
 
-        <select class="mt-3 form-select" aria-label="Default select example" name="group_id" id="groupSelect" style="display: none;">
-            <option selected disabled value="">Escolha o regimento</option>
-            @foreach ($groups as $group)
-                <option value="{{ $group['id'] }}">{{ $group['name'] }}</option>
-            @endforeach
-        </select>
-
-        <select class="mt-3 form-select" aria-label="Default select example" name="bimester" id="bimesterSelect" style="display: none;">
-            <option selected disabled value="">Escolha o bimestre</option>
-            <option value="1">1º Bimestre</option>
-            <option value="2">2º Bimestre</option>
-            <option value="3">3º Bimestre</option>
-            <option value="4">4º Bimestre</option>
-        </select>
-                            
-        <select class="mt-3 form-select" aria-label="Default select example" name="teacher_id" id="teacherSelect" style="display: none;">
-            <option selected disabled value="">Escolha o professor</option>
-            @foreach ($teachers as $teacher)
-                <option value="{{ $teacher['id'] }}">{{ $teacher['name'] }}</option>
-            @endforeach
-        </select>
+        <x-selectField
+            name="group_id"
+            id="groupSelect"
+            hide="{{ true }}"
+            :options="$groups"
+            placeholder="Selecione o regimento"
+        />
         
-        <select class="mt-3 form-select" aria-label="Default select example" name="discipline_id" id="disciplineSelect" style="display: none;">
-            <option selected disabled value="">Escolha a disciplina</option>
-            @foreach ($disciplines as $discipline)
-                <option value="{{ $discipline['id'] }}">{{ $discipline['name'] }}</option>
-            @endforeach
-        </select>
+        <x-selectField
+            name="Bimestre"
+            id="bimesterSelect"
+            hide="{{ true }}"
+            :options="[
+                [
+                    'id' => '1',
+                    'name' => '1º bimestre'
+                ],
+                [
+                    'id' => '2',
+                    'name' => '2º bimestre'
+                ],
+                [
+                    'id' => '3',
+                    'name' => '3º bimestre'
+                ],
+                [
+                    'id' => '4',
+                    'name' => '4º bimestre'
+                ]
+            ]"
+            placeholder="Selecione o bimestre"
+        />
+        
+        <x-selectField
+            name="teacher_id"
+            id="teacherSelect"
+            hide="{{ true }}"
+            :options="$teachers"
+            placeholder="Selecione o professor"
+        />
+        
+        <x-selectField
+            name="discipline_id"
+            id="disciplineSelect"
+            hide="{{ true }}"
+            :options="$disciplines"
+            placeholder="Selecione a disciplina"
+        />
 
-        <div class="mt-3 form" id="dateInput" style="display: none;">
-            <input type="date" class="form-control" name="date">
-        </div>
-
+        <x-inputField
+            id="dateInput"
+            name="date"
+            type="date"
+            hide="{{ true }}"
+        />
         <div class="mt-5 d-flex justify-content-between">
             <div>
                 <div class="card-btn-container">
@@ -167,26 +183,38 @@
     function showFilters(){
         if($('#yearFilter').is(':checked')){
             $("#yearSelect").show();
+        } else{
+            $("#yearSelect").hide();
         }
 
         if($('#groupFilter').is(':checked')){
             $("#groupSelect").show();
+        } else{
+            $("#groupSelect").hide();
         }
 
         if($('#bimesterFilter').is(':checked')){
             $("#bimesterSelect").show();
+        } else{
+            $("#bimesterSelect").hide();
         }
 
         if($('#teacherFilter').is(':checked')){
             $("#teacherSelect").show();
+        } else{
+            $("#teacherSelect").hide();
         }
 
         if($('#disciplineFilter').is(':checked')){
             $("#disciplineSelect").show();
+        } else{
+            $("#disciplineSelect").hide();
         }
 
         if($('#dateFilter').is(':checked')){
             $("#dateInput").show();
+        } else{
+            $("#dateInput").hide();
         }
     }
 </script>

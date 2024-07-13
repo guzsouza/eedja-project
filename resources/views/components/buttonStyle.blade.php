@@ -1,11 +1,24 @@
+@props([
+    'type' => 'button',
+    'color' => 'primary',
+    'action',
+    'ionic',
+    'attributes',
+    "href" => '#'
+])
+
 <div class="card-btn-container">
-    <div class="input-group d-flex justify-content-center">
+    <a href="{{ $href }}" class="input-group d-flex justify-content-center list-style" {{ $attributes }}>
         <button type="{{ $type }}" class="btn btn-{{ $color }} btn-service d-flex align-items-center"><span>{{ $action }}</span></button>
         <button type="{{ $type }}" class="btn btn-{{ $color }} btn-service d-flex align-items-center"><ion-icon class="ionic-service" name="{{ $ionic }}"></ion-icon></button>
-    </div>
+    </a>
 </div>
 
 <style>
+    .list-style{
+        text-decoration: none;
+    }
+
     .btn-service{
         border-left: 1px solid #cccc;
     }

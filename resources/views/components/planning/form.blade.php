@@ -1,3 +1,10 @@
+@props([
+    'action',
+    'id',
+    'planning' => ['a'],
+    'update' => false
+])
+
 <div class="mb-3" style="padding: 10px 30px">
     <form action="{{ $action }}" method="POST" id="planningForm">
         @if($update)
@@ -6,54 +13,72 @@
         @csrf
         <input type="hidden" name="spreadsheet_id" value="{{ $id }}">
 
-        <div class="mb-3">
-        <label for="data">Data</label>
-            <input type="date" class="form-control" id="data" name="date" value="@isset($planning){{ old('date', $planning['date']) ?? '' }}@endisset">
-        </div>
+        <x-inputField
+            type="date"
+            id="date"
+            name="date"
+            label="Data"
+            value="{{ old('date', optional($planning)->date) }}"
+        />
 
         <div class="mb-3">
-            <label for="content">Conteúdos</label>
-            <textarea class="form-control" id="content" style="height: 80px" name="content" placeholder="Conteúdos">@isset($planning){{ old('content', $planning['content']) ?? '' }}@endisset</textarea>
+            <x-textAreaField
+                id="content"
+                name="content"
+                label="Conteúdos"
+                placeholder="Conteúdos"
+                value="{{ old('content', optional($planning)->content) }}"
+            />
         </div>
                 
         <div class="mb-3">
-            <label for="skills">Habilidades</label>
-            <textarea class="form-control" id="skills" style="height: 80px"name="skills" placeholder="Habilidades">@isset($planning){{ old('skills', $planning['skills']) ?? '' }}@endisset</textarea>
+            <x-textAreaField
+                id="skills"
+                name="skills"
+                label="Habilidades"
+                placeholder="Habilidades"
+                value="{{ old('skills', optional($planning)->skills) }}"
+            />
         </div>
 
         <div class="mb-3">
-            <label for="resource">Recursos</label>
-            <textarea class="form-control" id="resource" style="height: 80px"name="resource" placeholder="Recursos">@isset($planning){{ old('resources', $planning['resource']) ?? '' }}@endisset</textarea>
+            <x-textAreaField
+                id="resource"
+                name="resource"
+                label="Recurso"
+                placeholder="Recurso"
+                value="{{ old('resource', optional($planning)->resource) }}"
+            />
         </div>
 
         <div class="mb-3">
-            <label for="metodology">Metodologia</label>
-            <textarea class="form-control" id="metodology" style="height: 80px" name="metodology" placeholder="Metodologias adotadas">@isset($planning){{ old('metodology', $planning['metodology']) ?? '' }}@endisset</textarea>
+            <x-textAreaField
+                id="metodology"
+                name="metodology"
+                label="Metodologia"
+                placeholder="Metodologia"
+                value="{{ old('metodology', optional($planning)->metodology) }}"
+            />
         </div>
 
         <div class="mb-3">
-            <label for="project">Projetos</label>
-            <textarea class="form-control" id="project" style="height: 80px" name="project" placeholder="Trabalhos e projetos">@isset($planning){{ old('project', $planning['project']) ?? '' }}@endisset</textarea>
+            <x-textAreaField
+                id="project"
+                name="project"
+                label="Projetos"
+                placeholder="Projetos"
+                value="{{ old('project', optional($planning)->project) }}"
+            />
         </div>
 
-        @if($update)
-            <div class="mt-5">
-                <x-buttonStyle
-                    type="submit"
-                    color="success"
-                    action="Atualizar"
-                    ionic="checkmark-outline"
-                />
-            </div>
-        @else
-            <div class="mt-5">
-                <x-buttonStyle
-                    type="submit"
-                    color="success"
-                    action="Enviar"
-                    ionic="paper-plane-outline"
-                />
-            </div>
-        @endif
+
+        <div class="mt-5">
+            <x-buttonStyle
+                type="submit"
+                color="success"
+                action="{{ $update ? 'Atualizar' : 'Enviar' }}"
+                ionic="{{ $update ? 'checkmark-outline' : 'paper-plane-outline' }}"
+            />
+        </div>
     </form>
 </div>
