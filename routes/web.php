@@ -41,6 +41,7 @@ Route::resource('professores', TeacherController::class);
 Route::get('/dashboard', [PlanningController::class, 'index'])->name('dashboard');
 
 //Planilhas
+Route::get('/planilha/{id}', [SpreadsheetController::class, 'showById'])->name('spreadsheet.showById');
 Route::get('/planilha', [SpreadsheetController::class, 'show'])->name('spreadsheet.show');
 Route::get('/planejamentos', [PlanningController::class, 'show'])->name('planning.show');
 
@@ -94,5 +95,12 @@ Route::prefix('/professores-grupos')->group(function(){
     Route::put('{teacher_id}/{group_id}', [TeacherGroupAssociationController::class, 'update'])->name('teacherGroup.update');
     Route::delete('{teacher_id}/{group_id}', [TeacherGroupAssociationController::class, 'destroy'])->name('teacherGroup.destroy');
 });
+
+
+    //Registro
+Route::get('/registro', function(){
+    return view('register');
+});
+
 
 require __DIR__.'/auth.php';

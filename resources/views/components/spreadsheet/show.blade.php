@@ -2,7 +2,7 @@
     @section('title', 'Planejamento')
     <div class="row">
         @if(isset($spreadsheetNotFound))
-            <x-spreadsheet.notFound
+            <x-searchNotFound
                 :params="$params"
             />
         @else
@@ -57,6 +57,7 @@
                     <x-planningCard
                         :planning="$planning"
                         index="{{ $index }}"
+                        isPlanning="{{ false }}"
                     />
                     @php
                         $index++;

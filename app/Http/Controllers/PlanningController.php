@@ -16,33 +16,55 @@ use App\Services\TeacherService;
 class PlanningController{
     //serviços usados
     protected $planningService;
-    protected $groupIndexService;
-    protected $disciplineIndexService;
-    protected $teacherIndexService;
+    protected $groupService;
+    protected $disciplineService;
+    protected $teacherService;
     
     //construtor dos serviços
-    public function __construct(PlanningService $planningService, GroupService $groupIndexService, DisciplineService $disciplineIndexService, TeacherService $teacherIndexService){
+    public function __construct(PlanningService $planningService, GroupService $groupService, DisciplineService $disciplineService, TeacherService $teacherService){
         $this->planningService = $planningService;
-        $this->groupIndexService = $groupIndexService;
-        $this->disciplineIndexService = $disciplineIndexService;
-        $this->teacherIndexService = $teacherIndexService;
+        $this->groupService = $groupService;
+        $this->disciplineService = $disciplineService;
+        $this->teacherService = $teacherService;
     }
 
     //index de grupos disciplinas e planejamentos
     public function index(){
         $plannings = $this->planningService->getAll();
-        $groups = $this->groupIndexService->getAll();
-        $disciplines = $this->disciplineIndexService->getAll();
-        $teachers = $this->teacherIndexService->getAll();
+        $groups = $this->groupService->getAll();
+        $disciplines = $this->disciplineService->getAll();
+        $teachers = $this->teacherService->getAll();
         return view('dashboard', ['plannings' => $plannings, 'groups' => $groups, 'disciplines' => $disciplines, 'teachers' => $teachers]);
     }
 
     public function show(Request $request){
+        
         if($request->date === NULL){
             $request->offsetUnset('date');
         }
         $plannings = $this->planningService->getPlannings($request);
-        $params = $request->except('_token');
+        if($request->has('teacher_id')){
+            $teacher = $this->teacherService->getById($request->teacher_id);
+            $params[] = 'Professor: ' . $teacher['name'];
+        }
+        if($request->has('group_id')){
+            $group = $this->groupService->getById($request->group_id);
+            $params[] = 'Turma: ' . $group['name'];
+        }
+        if($request->has('discipline_id')){
+            $discipline = $this->disciplineService->getById($request->discipline_id);
+            $params[] = 'Disciplina: ' . $discipline['discipline'];
+        }
+        if($request->has('bimester')){
+            $params[] = 'Bimestre: ' . $request->bimester . 'º';
+        }
+        if($request->has('year')){
+            $params[] = 'Ano: ' . $request->year;
+        }
+        if($request->has('date')){
+            $params[] = 'Data: ' . $request->date;
+        }
+
         return view('components.planning.show', ['plannings' => $plannings, 'params' => $params]);
     }
 

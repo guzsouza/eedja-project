@@ -72,7 +72,7 @@
         />
         
         <x-selectField
-            name="Bimestre"
+            name="bimester"
             id="bimesterSelect"
             hide="{{ true }}"
             :options="[

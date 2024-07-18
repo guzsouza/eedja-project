@@ -1,7 +1,8 @@
 @props([
     'index' => 1,
     'planning',
-    'search' => 'simple'
+    'search' => 'simple',
+    'isPlanning' => true
 ])
 
 <div class="container mt-1">
@@ -42,13 +43,17 @@
                             <p><strong>Projetos: </strong>{{ $planning['project'] }}</p>
                         </div>
                     </div>
-                    <div class="list-style">
-                        <div class="link-drop">
-                            <p><strong>Planilha: </strong>Planilha correspondente</p>
+                    @if($isPlanning)
+                        <div class="list-style">
+                            <x-buttonStyle
+                                action="Visualizar Planilha"
+                                ionic="arrow-forward-circle-outline"
+                                color="success"
+                                href="{{ route('spreadsheet.showById', ['id' => $planning['spreadsheet_id']]) }}"
+                            />
                         </div>
-                    </div>
-                    <div class="list-style">
-                        @if($search === 'simple')
+                    @else
+                        <div class="list-style">
                             <div class="link-drop d-flex justify-content-between">
                                 <x-buttonStyle
                                     action="Editar"
@@ -58,23 +63,15 @@
                                     data-bs-target="#edit-{{ $planning['id'] }}"
                                 />
                                 <x-buttonStyle
-                                    action="Editar"
+                                    action="Deletar"
                                     ionic="trash-outline"
                                     color="danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#confirmDelete-{{ $planning['id'] }}"
                                 />
                             </div>
-                        @elseif ($search === 'advanced')
-                        <div class="link-drop d-flex justify-content-between">
-                            <x-buttonStyle
-                                action="Editar"
-                                ionic="trash-outline"
-                                color="primary"
-                                href="{{ route('dashboard') }}"
-                            />
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

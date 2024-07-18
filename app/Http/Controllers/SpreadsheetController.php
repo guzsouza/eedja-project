@@ -32,6 +32,11 @@ class SpreadsheetController{
         return redirect()->route('spreadsheet.show', $request);
     }
 
+    public function showById(int $id){
+        $spreadsheet = $this->spreadsheetService->getById($id);
+        return view('components.spreadsheet.show', ['spreadsheet' => $spreadsheet]);
+    }
+
     //GET /planilha/
     public function show(Request $request){
         $spreadsheet = $this->spreadsheetService->getSpreadsheet($request);

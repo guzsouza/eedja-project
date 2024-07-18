@@ -24,8 +24,7 @@ class SpreadsheetService{
 
     public function getById(int $id){
         try{
-            $spreadsheet = $this->findSpreadsheet($id);
-            return response()->json([$spreadsheet]);
+            return Spreadsheet::where('id', $id)->with('plannings', 'teacher', 'group', 'discipline')->first();
         } catch (Exception $e){
             return response()->json(['Details' => $e], 400);
         }
