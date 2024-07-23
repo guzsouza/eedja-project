@@ -4,12 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePlanningRequest extends FormRequest{
+class UpdateUserRequest extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
+    public function authorize(): bool{
         return true;
     }
 
@@ -18,17 +17,12 @@ class StorePlanningRequest extends FormRequest{
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
+    public function rules(): array{
         return [
-            'spreadsheet_id',
-            'date',
-            'resume',
-            'contents',
-            'skills',
-            'resources',
-            'methodologies',
-            'projects' => ['required']
+            'name',
+            'lastname',
+            'profilePhoto',
+            'telephone',
         ];
     }
 }

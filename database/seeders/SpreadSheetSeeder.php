@@ -34,6 +34,17 @@ class SpreadSheetSeeder extends Seeder{
                 'classes' => 10,
                 'startDate' => '2023-10-01',
                 'endDate' => '2023-10-31',
+            ],
+            [
+                'id' => '3',
+                'group_id' => '3',
+                'teacher_id' => '3',
+                'discipline_id' => '3',
+                'bimester' => '3',
+                'year' => '2024',
+                'classes' => 10,
+                'startDate' => '2023-10-01',
+                'endDate' => '2023-10-31',
             ]
 
         ];

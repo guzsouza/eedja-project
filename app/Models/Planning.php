@@ -12,11 +12,12 @@ class Planning extends Model{
     protected $fillable = [
         'spreadsheet_id',
         'date',
-        'content',
+        'contents',
+        'resume',
         'skills',
-        'resource',
-        'metodology',
-        'project'
+        'resources',
+        'methodologies',
+        'projects',
     ];
 
     protected $hidden = [

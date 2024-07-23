@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('isAdmin')->default(false);
+            $table->boolean('isTeacher')->default(false);
+            $table->boolean('isSupervisor')->default(false);
+            $table->string('cpf');
+            $table->string('profilePhoto');
+            $table->string('telephone');
             $table->rememberToken();
             $table->timestamps();
         });

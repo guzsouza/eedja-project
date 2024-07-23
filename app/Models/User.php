@@ -19,6 +19,9 @@ class User extends Authenticatable{
         'name',
         'email',
         'password',
+        'cpf',
+        'profilePhoto',
+        'telephone',
     ];
 
     /**
@@ -42,5 +45,9 @@ class User extends Authenticatable{
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function addresses(){
+        return $this->HasMany(Address::class, 'user_id');
     }
 }

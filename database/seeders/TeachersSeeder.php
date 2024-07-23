@@ -14,22 +14,23 @@ class TeachersSeeder extends Seeder
     public function run(): void
     {
         $teachers = [
-            ['id' => '1', 'name' => 'João Augusto'],
-            ['id' => '2', 'name' => 'Maria Silva'],
-            ['id' => '3', 'name' => 'Carlos Oliveira'],
-            ['id' => '4', 'name' => 'Ana Souza'],
-            ['id' => '5', 'name' => 'Pedro Martins'],
-            ['id' => '6', 'name' => 'Lucia Fernandes'],
-            ['id' => '7', 'name' => 'Roberto Lima'],
-            ['id' => '8', 'name' => 'Fernanda Costa'],
-            ['id' => '9', 'name' => 'Marcos Pereira'],
-            ['id' => '10', 'name' => 'Paula Rodrigues'],
+            ['user_id' => '1', 'name' => 'João Augusto', 'lastname' => 'Silva'],
+            ['user_id' => '2', 'name' => 'Maria Silva', 'lastname' => 'Silva'],
+            ['user_id' => '3', 'name' => 'Carlos Oliveira', 'lastname' => 'Silva'],
+            ['user_id' => '4', 'name' => 'Ana Souza', 'lastname' => 'Silva'],
+            ['user_id' => '5', 'name' => 'Pedro Martins', 'lastname' => 'Silva'],
+            ['user_id' => '6', 'name' => 'Lucia Fernandes', 'lastname' => 'Silva'],
+            ['user_id' => '7', 'name' => 'Roberto Lima', 'lastname' => 'Silva'],
+            ['user_id' => '8', 'name' => 'Fernanda Costa', 'lastname' => 'Silva'],
+            ['user_id' => '9', 'name' => 'Marcos Pereira', 'lastname' => 'Silva'],
+            ['user_id' => '10', 'name' => 'Paula Rodrigues', 'lastname' => 'Silva'],
         ];
         
         foreach ($teachers as $teacher) {
             Teacher::create([
-                'id' => $teacher['id'],
+                'user_id' => $teacher['user_id'],
                 'name' => $teacher['name'],
+                'lastname' => $teacher['lastname'],
             ]);
         }
     }

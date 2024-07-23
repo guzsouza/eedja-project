@@ -32,6 +32,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages(){
+        return [
+            'email.required' => 'envie o email',
+            'email.email' => 'Digite um email válido',
+            'password.required' => 'Digite uma senha',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

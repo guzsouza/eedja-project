@@ -23,11 +23,12 @@ class UpdatePlanningRequest extends FormRequest{
         return [
             'spreadsheet_id',
             'date',
-            'content',
+            'resume',
+            'contents',
             'skills',
-            'resource',
-            'metodology',
-            'project' => ['required']
+            'resources',
+            'methodologies',
+            'projects' => ['required']
         ];
     }
 }

@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePlanningRequest extends FormRequest{
+class LoginRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -21,14 +22,16 @@ class StorePlanningRequest extends FormRequest{
     public function rules(): array
     {
         return [
-            'spreadsheet_id',
-            'date',
-            'resume',
-            'contents',
-            'skills',
-            'resources',
-            'methodologies',
-            'projects' => ['required']
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ];
+    }
+
+    public function messages(){
+        return [
+            'email.required' => 'envie o email',
+            'email.email' => 'Digite um email válido',
+            'password.required' => 'Digite uma senha',
         ];
     }
 }

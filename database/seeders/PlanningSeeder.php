@@ -12,170 +12,298 @@ class PlanningSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        $plannings = [
-            [
-                'id' => '1',
-                'spreadsheet_id' => '1',
-                'date' => '2024-01-01',
-                'content' => 'Introduction to Algebra',
-                'skills' => 'Basic algebraic operations',
-                'resource' => 'Textbook, Worksheet',
-                'metodology' => 'Lecture, Group work',
-                'project' => 'Algebra project'
-            ],
-            [
-                'id' => '12',
-                'spreadsheet_id' => '1',
-                'date' => '2024-02-01',
-                'content' => 'Portuguese Grammar',
-                'skills' => 'Grammar rules, Writing skills',
-                'resource' => 'Grammar book, Exercises',
-                'metodology' => 'Discussion, Exercises',
-                'project' => 'Grammar workbook'
-            ],
-            [
-                'id' => '2',
-                'spreadsheet_id' => '1',
-                'date' => '2024-02-01',
-                'content' => 'Geometry Fundamentals',
-                'skills' => 'Geometric shapes and angles',
-                'resource' => 'Geometric tools, Online resources',
-                'metodology' => 'Demonstration, Problem-solving',
-                'project' => 'Geometric constructions'
-            ],
-            [
-                'id' => '3',
-                'spreadsheet_id' => '1',
-                'date' => '2024-03-01',
-                'content' => 'History of Science',
-                'skills' => 'Historical analysis, Scientific revolutions',
-                'resource' => 'Books, Documentaries',
-                'metodology' => 'Debate, Research projects',
-                'project' => 'Scientific breakthroughs'
-            ],
-            [
-                'id' => '4',
-                'spreadsheet_id' => '1',
-                'date' => '2024-04-01',
-                'content' => 'Literature Appreciation',
-                'skills' => 'Critical analysis, Literary techniques',
-                'resource' => 'Novels, Poems',
-                'metodology' => 'Interactive reading, Creative writing',
-                'project' => 'Literary analysis'
-            ],
-            [
-                'id' => '5',
-                'spreadsheet_id' => '1',
-                'date' => '2024-05-01',
-                'content' => 'Introduction to Chemistry',
-                'skills' => 'Chemical elements and reactions',
-                'resource' => 'Laboratory equipment, Textbooks',
-                'metodology' => 'Experiments, Discussions',
-                'project' => 'Chemical analysis'
-            ],
-            [
-                'id' => '6',
-                'spreadsheet_id' => '1',
-                'date' => '2024-06-01',
-                'content' => 'Advanced Algebra',
-                'skills' => 'Equations and inequalities',
-                'resource' => 'Mathematical software, Problem sets',
-                'metodology' => 'Workshops, Individual practice',
-                'project' => 'Algebraic modeling'
-            ],            
-            [
-                'id' => '13',
-                'spreadsheet_id' => '1',
-                'date' => '2024-03-01',
-                'content' => 'History of Brazil',
-                'skills' => 'Historical analysis',
-                'resource' => 'History book, Maps',
-                'metodology' => 'Lecture, Research',
-                'project' => 'Historical timeline'
-            ],
-            [
-                'id' => '14',
-                'spreadsheet_id' => '1',
-                'date' => '2024-04-01',
-                'content' => 'Geography of Europe',
-                'skills' => 'Map reading, Geographic analysis',
-                'resource' => 'Atlas, Slides',
-                'metodology' => 'Lecture, Map exercises',
-                'project' => 'Geographic report'
-            ],
-            [
-                'id' => '15',
-                'spreadsheet_id' => '2',
-                'date' => '2024-05-01',
-                'content' => 'Basic Physics',
-                'skills' => 'Physics principles',
-                'resource' => 'Lab equipment, Textbook',
-                'metodology' => 'Lecture, Lab experiments',
-                'project' => 'Physics lab report'
-            ],
-            [
-                'id' => '16',
-                'spreadsheet_id' => '2',
-                'date' => '2024-06-01',
-                'content' => 'Chemistry Basics',
-                'skills' => 'Chemical reactions',
-                'resource' => 'Chemistry set, Textbook',
-                'metodology' => 'Lecture, Group experiments',
-                'project' => 'Chemistry project'
-            ],
-            [
-                'id' => '7',
-                'spreadsheet_id' => '2',
-                'date' => '2024-07-01',
-                'content' => 'Introduction to Biology',
-                'skills' => 'Biological concepts',
-                'resource' => 'Microscope, Slides',
-                'metodology' => 'Lecture, Lab work',
-                'project' => 'Biology report'
-            ],
-            [
-                'id' => '8',
-                'spreadsheet_id' => '2',
-                'date' => '2024-08-01',
-                'content' => 'English Literature',
-                'skills' => 'Reading, Analysis',
-                'resource' => 'Novels, Poems',
-                'metodology' => 'Discussion, Reading',
-                'project' => 'Literature essay'
-            ],
-            [
-                'id' => '9',
-                'spreadsheet_id' => '2',
-                'date' => '2024-09-01',
-                'content' => 'Spanish Grammar',
-                'skills' => 'Grammar, Vocabulary',
-                'resource' => 'Textbook, Worksheets',
-                'metodology' => 'Lecture, Exercises',
-                'project' => 'Grammar workbook'
-            ],
-            [
-                'id' => '10',
-                'spreadsheet_id' => '2',
-                'date' => '2024-10-01',
-                'content' => 'Physical Education',
-                'skills' => 'Fitness, Teamwork',
-                'resource' => 'Gym equipment',
-                'metodology' => 'Exercises, Sports',
-                'project' => 'Fitness report'
-            ],
-        ];
+    {{{  }}
+    $plannings = [
+        [
+            'id' => '1',
+            'spreadsheet_id' => '1',
+            'discipline_id' => '1',
+            'date' => '2024-01-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Introdução à Álgebra',
+            'skills' => 'Operações algébricas básicas',
+            'resources' => 'Livro didático, Folha de exercícios',
+            'methodologies' => 'Aula expositiva, Trabalho em grupo',
+            'projects' => 'Projeto de Álgebra'
+        ],
+        [
+            'id' => '2',
+            'spreadsheet_id' => '1',
+            'discipline_id' => '1',
+            'date' => '2024-02-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Fundamentos de Geometria',
+            'skills' => 'Formas e ângulos geométricos',
+            'resources' => 'Ferramentas geométricas, Recursos online',
+            'methodologies' => 'Demonstração, Resolução de problemas',
+            'projects' => 'Construções geométricas'
+        ],
+        [
+            'id' => '6',
+            'spreadsheet_id' => '1',
+            'discipline_id' => '1',
+            'date' => '2024-06-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Álgebra Avançada',
+            'skills' => 'Equações e desigualdades',
+            'resources' => 'Software matemático, Conjuntos de problemas',
+            'methodologies' => 'Oficinas, Prática individual',
+            'projects' => 'Modelagem algébrica'
+        ],
+        [
+            'id' => '17',
+            'spreadsheet_id' => '1',
+            'discipline_id' => '1',
+            'date' => '2024-07-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Estatística Básica',
+            'skills' => 'Conceitos de estatística, Análise de dados',
+            'resources' => 'Calculadora, Folha de exercícios',
+            'methodologies' => 'Aula expositiva, Estudos de caso',
+            'projects' => 'Projeto de análise de dados'
+        ],
+        [
+            'id' => '18',
+            'spreadsheet_id' => '1',
+            'discipline_id' => '1',
+            'date' => '2024-08-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Trigonometria',
+            'skills' => 'Funções trigonométricas, Aplicações práticas',
+            'resources' => 'Livro didático, Software de geometria',
+            'methodologies' => 'Aula expositiva, Prática em laboratório',
+            'projects' => 'Projeto de trigonometria'
+        ],
+        [
+            'id' => '3',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-03-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'História da Ciência',
+            'skills' => 'Análise histórica, Revoluções científicas',
+            'resources' => 'Livros, Documentários',
+            'methodologies' => 'Debate, Projetos de pesquisa',
+            'projects' => 'Descobertas científicas'
+        ],
+        [
+            'id' => '4',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-04-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Apreciação Literária',
+            'skills' => 'Análise crítica, Técnicas literárias',
+            'resources' => 'Romances, Poemas',
+            'methodologies' => 'Leitura interativa, Escrita criativa',
+            'projects' => 'Análise literária'
+        ],
+        [
+            'id' => '12',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-02-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Gramática Portuguesa',
+            'skills' => 'Regras gramaticais, Habilidades de escrita',
+            'resources' => 'Livro de gramática, Exercícios',
+            'methodologies' => 'Discussão, Exercícios',
+            'projects' => 'Caderno de gramática'
+        ],
+        [
+            'id' => '13',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-03-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'História do Brasil',
+            'skills' => 'Análise histórica',
+            'resources' => 'Livro de história, Mapas',
+            'methodologies' => 'Aula expositiva, Pesquisa',
+            'projects' => 'Linha do tempo histórica'
+        ],
+        [
+            'id' => '14',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-04-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Geografia da Europa',
+            'skills' => 'Leitura de mapas, Análise geográfica',
+            'resources' => 'Atlas, Slides',
+            'methodologies' => 'Aula expositiva, Exercícios com mapas',
+            'projects' => 'Relatório geográfico'
+        ],
+        [
+            'id' => '19',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-05-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Literatura Brasileira',
+            'skills' => 'Análise de textos literários brasileiros',
+            'resources' => 'Romances, Contos',
+            'methodologies' => 'Leitura crítica, Discussão em grupo',
+            'projects' => 'Ensaio literário'
+        ],
+        [
+            'id' => '20',
+            'spreadsheet_id' => '2',
+            'discipline_id' => '2',
+            'date' => '2024-06-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Redação',
+            'skills' => 'Estrutura textual, Coesão e coerência',
+            'resources' => 'Textos de exemplo, Exercícios práticos',
+            'methodologies' => 'Oficinas de escrita, Revisão de textos',
+            'projects' => 'Produção de redação'
+        ],
+        [
+            'id' => '21',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-01-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Introdução à Química',
+            'skills' => 'Conceitos básicos de química, Elementos químicos',
+            'resources' => 'Livro didático, Kit de química',
+            'methodologies' => 'Aula expositiva, Experimentos em laboratório',
+            'projects' => 'Experimento de separação de misturas'
+        ],
+        [
+            'id' => '22',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-02-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Ligação Química',
+            'skills' => 'Tipos de ligações químicas, Estruturas moleculares',
+            'resources' => 'Modelos moleculares, Vídeos educacionais',
+            'methodologies' => 'Aula expositiva, Construção de modelos',
+            'projects' => 'Projeto de estruturas moleculares'
+        ],
+        [
+            'id' => '23',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-03-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Reações Químicas',
+            'skills' => 'Classificação e balanceamento de reações',
+            'resources' => 'Tabela periódica, Kit de reações químicas',
+            'methodologies' => 'Aula expositiva, Experimentos',
+            'projects' => 'Análise de reações químicas'
+        ],
+        [
+            'id' => '24',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-04-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Estequiometria',
+            'skills' => 'Cálculos estequiométricos, Relações molares',
+            'resources' => 'Calculadora científica, Exercícios práticos',
+            'methodologies' => 'Aula expositiva, Resolução de problemas',
+            'projects' => 'Projeto de cálculo estequiométrico'
+        ],
+        [
+            'id' => '25',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-05-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Ácidos e Bases',
+            'skills' => 'Propriedades de ácidos e bases, pH e pOH',
+            'resources' => 'Indicadores de pH, Kit de laboratório',
+            'methodologies' => 'Aula expositiva, Experimentos práticos',
+            'projects' => 'Projeto de titulação ácido-base'
+        ],
+        [
+            'id' => '26',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-06-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Termoquímica',
+            'skills' => 'Energia em reações químicas, Entalpia',
+            'resources' => 'Gráficos de energia, Simulações online',
+            'methodologies' => 'Aula expositiva, Experimentos controlados',
+            'projects' => 'Estudo de reações endotérmicas e exotérmicas'
+        ],
+        [
+            'id' => '27',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-07-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Equilíbrio Químico',
+            'skills' => 'Princípio de Le Chatelier, Constante de equilíbrio',
+            'resources' => 'Laboratório virtual, Exercícios práticos',
+            'methodologies' => 'Aula expositiva, Simulações',
+            'projects' => 'Análise de sistemas em equilíbrio'
+        ],
+        [
+            'id' => '28',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-08-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Cinética Química',
+            'skills' => 'Velocidade das reações, Fatores que influenciam a velocidade',
+            'resources' => 'Gráficos de reação, Kit de reação rápida',
+            'methodologies' => 'Aula expositiva, Experimentos cronometrados',
+            'projects' => 'Projeto de estudo cinético'
+        ],
+        [
+            'id' => '29',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-09-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Química Orgânica',
+            'skills' => 'Compostos orgânicos, Funções orgânicas',
+            'resources' => 'Modelos de carbono, Vídeos explicativos',
+            'methodologies' => 'Aula expositiva, Construção de modelos',
+            'projects' => 'Análise de compostos orgânicos'
+        ],
+        [
+            'id' => '30',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-10-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Química Ambiental',
+            'skills' => 'Impactos ambientais, Ciclos biogeoquímicos',
+            'resources' => 'Artigos científicos, Documentários',
+            'methodologies' => 'Debates, Projetos de pesquisa',
+            'projects' => 'Projeto de análise ambiental'
+        ],
+        [
+            'id' => '31',
+            'spreadsheet_id' => '3',
+            'discipline_id' => '3',
+            'date' => '2024-11-01',
+            'resume' => 'Resumo do planejamento',
+            'contents' => 'Eletroquímica',
+            'skills' => 'Células galvânicas, Eletrólise',
+            'resources' => 'Kit de eletroquímica, Vídeos educativos',
+            'methodologies' => 'Aula expositiva, Experimentos em laboratório',
+            'projects' => 'Estudo de reações eletroquímicas'
+        ]
+    ];
+    
         
         foreach ($plannings as $planning) {
             Planning::create([
                 'id' => $planning['id'],
                 'spreadsheet_id' => $planning['spreadsheet_id'],
                 'date' => $planning['date'],
-                'content' => $planning['content'],
+                'resume' => $planning['resume'],
+                'contents' => $planning['contents'],
                 'skills' => $planning['skills'],
-                'resource' => $planning['resource'],
-                'metodology' => $planning['metodology'],
-                'project' => $planning['project'],
+                'resources' => $planning['resources'],
+                'methodologies' => $planning['methodologies'],
+                'projects' => $planning['projects'],
             ]);
         }
     }

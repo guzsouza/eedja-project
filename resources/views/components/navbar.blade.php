@@ -18,7 +18,10 @@
       </div>
   
       <div>
-        <a href="#login" class="btn nav-btn nav-font">Sair</a>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="subtmit" class="btn nav-btn nav-font">Sair</button>
+        </form>
       </div>
       
       {{-- 
@@ -39,12 +42,6 @@
       --}}
     </div>
   @endauth
-  
-    @guest
-    <div>
-      <a href="#login" class="cta">Entrar</a>
-    </div>
-    @endguest
     </div>
   </div>
   

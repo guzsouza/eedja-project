@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('spreadsheet_id');
             $table->foreign('spreadsheet_id')->references('id')->on('spreadsheets')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('resume', 32);
             $table->date('date');
-            $table->string('content', 256);
+            $table->string('contents', 256);
             $table->string('skills', 256);
-            $table->string('resource', 256);
-            $table->string('metodology', 256);
-            $table->string('project', 256);
+            $table->string('resources', 256);
+            $table->string('methodologies', 256);
+            $table->string('projects', 256);
             $table->timestamps();
         });
     }

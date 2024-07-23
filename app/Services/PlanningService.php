@@ -58,11 +58,12 @@ class PlanningService{
                 $planning = Planning::create($request->only(
                     'spreadsheet_id',
                     'date',
-                    'content',
+                    'resume',
+                    'contents',
                     'skills',
-                    'resource',
-                    'metodology',
-                    'project'
+                    'resources',
+                    'methodologies',
+                    'projects',
                 ));
                 return $planning;
             });
@@ -135,11 +136,12 @@ class PlanningService{
                 $planning->fill($request->only(
                     'spreadsheet_id',
                     'date',
-                    'content',
+                    'resume',
+                    'contents',
                     'skills',
-                    'resource',
-                    'metodology',
-                    'project'
+                    'resources',
+                    'methodologies',
+                    'projects',
                 ))->save();
 
                 return $planning;

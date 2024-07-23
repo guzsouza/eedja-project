@@ -23,11 +23,11 @@
 
         <div class="mb-3">
             <x-textAreaField
-                id="content"
-                name="content"
+                id="contents"
+                name="contents"
                 label="Conteúdos"
                 placeholder="Conteúdos"
-                value="{{ old('content', optional($planning)->content) }}"
+                value="{{ old('contents', optional($planning)->contents) }}"
             />
         </div>
                 
@@ -43,31 +43,31 @@
 
         <div class="mb-3">
             <x-textAreaField
-                id="resource"
-                name="resource"
+                id="resources"
+                name="resources"
                 label="Recurso"
                 placeholder="Recurso"
-                value="{{ old('resource', optional($planning)->resource) }}"
+                value="{{ old('resources', optional($planning)->resources) }}"
             />
         </div>
 
         <div class="mb-3">
             <x-textAreaField
-                id="metodology"
-                name="metodology"
+                id="metodologies"
+                name="metodologies"
                 label="Metodologia"
                 placeholder="Metodologia"
-                value="{{ old('metodology', optional($planning)->metodology) }}"
+                value="{{ old('metodology', optional($planning)->metodologies) }}"
             />
         </div>
 
         <div class="mb-3">
             <x-textAreaField
-                id="project"
-                name="project"
+                id="projects"
+                name="projects"
                 label="Projetos"
                 placeholder="Projetos"
-                value="{{ old('project', optional($planning)->project) }}"
+                value="{{ old('project', optional($planning)->projects) }}"
             />
         </div>
 

@@ -3,12 +3,20 @@
     <div class="row">
         <div class="container mt-1">
             <div class="row justify-content-center">
-                <div class="col-md-8 d-flex">
-                    <div class="input-group">
-                        <div class="text-center form-control d-grid">
-                            Você buscou por:
+                <div class="col-md-8">
+                    <div class="btn-container-documentation form-control">
+                        <a class="d-flex justify-content-between align-items-center list-style" data-bs-toggle="collapse" data-bs-target="#collapseHeader" aria-expanded="false" aria-controls="collapseExample" onclick="toggleDrop(this)">
+                            <h1><strong>Busca avançada</strong></h1>
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                        </a>
+
+                        <div class="collapse btn-drop" id="collapseHeader">
                             @foreach ($params as $param)
-                                <p>{{ $param }}</p>
+                            <div class="list-style">
+                                <div class="link-drop">
+                                    <h3>{{ $param }}</h3>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>

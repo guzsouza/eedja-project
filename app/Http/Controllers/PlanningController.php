@@ -53,7 +53,7 @@ class PlanningController{
         }
         if($request->has('discipline_id')){
             $discipline = $this->disciplineService->getById($request->discipline_id);
-            $params[] = 'Disciplina: ' . $discipline['discipline'];
+            $params[] = 'Disciplina: ' . $discipline['name'];
         }
         if($request->has('bimester')){
             $params[] = 'Bimestre: ' . $request->bimester . 'º';

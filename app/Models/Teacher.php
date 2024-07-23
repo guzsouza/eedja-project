@@ -14,8 +14,7 @@ class Teacher extends Model{
 
     protected $fillable = [
         'name',
-        'email',
-        'profilePhoto',
+        'lastname',
     ];
     
     protected $hidden = [

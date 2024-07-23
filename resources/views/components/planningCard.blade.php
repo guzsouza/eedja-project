@@ -12,7 +12,7 @@
                 <button class="form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlanning{{ $planning['id'] }}" aria-expanded="false" aria-controls="collapseExample" onclick="toggleDrop(this)">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="planning-name">
-                            <strong>{{ $index }}</strong> - {{ $planning['date'] }}
+                            <strong>{{ $index }}</strong> - {{ $planning['date'] }} - {{ $planning['resume'] }}
                         </span>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
@@ -20,7 +20,7 @@
                 <div class="collapse btn-drop" id="collapsePlanning{{ $planning['id'] }}">
                     <div class="list-style">
                         <div class="link-drop">
-                            <p><strong>Conteúdo: </strong>{{ $planning['content'] }}</p>
+                            <p><strong>Conteúdo: </strong>{{ $planning['contents'] }}</p>
                         </div>
                     </div>
                     <div class="list-style">
@@ -30,17 +30,17 @@
                     </div>
                     <div class="list-style">
                         <div class="link-drop">
-                            <p><strong>Recursos: </strong>{{ $planning['resource'] }}</p>
+                            <p><strong>Recursos: </strong>{{ $planning['resources'] }}</p>
                         </div>
                     </div>
                     <div class="list-style">
                         <div class="link-drop">
-                            <p><strong>Metodologia:</strong> {{ $planning['metodology'] }}</p>
+                            <p><strong>Metodologia:</strong> {{ $planning['metodologies'] }}</p>
                         </div>
                     </div>
                     <div class="list-style">
                         <div class="link-drop">
-                            <p><strong>Projetos: </strong>{{ $planning['project'] }}</p>
+                            <p><strong>Projetos: </strong>{{ $planning['projects'] }}</p>
                         </div>
                     </div>
                     @if($isPlanning)
