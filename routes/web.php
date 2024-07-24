@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/planejamentos', [PlanningController::class, 'show'])->name('planning.show');
         Route::post('/planilha', [SpreadsheetController::class, 'store'])->name('spreadsheet.store');
 
-        Route::middleware(CheckSpreadsheetOwner::class. ':admin')->group(function() {
+        Route::middleware(CheckSpreadsheetOwner::class)->group(function() {
             //Planilha
             Route::put('/planilha/{id}', [SpreadsheetController::class, 'update'])->name('spreadsheet.update');
             //Planejamentos

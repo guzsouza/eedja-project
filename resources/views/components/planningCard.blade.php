@@ -53,24 +53,26 @@
                             />
                         </div>
                     @else
-                        <div class="list-style">
-                            <div class="link-drop d-flex justify-content-between">
-                                <x-buttonStyle
-                                    action="Editar"
-                                    ionic="settings-outline"
-                                    color="primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#edit-{{ $planning['id'] }}"
-                                />
-                                <x-buttonStyle
-                                    action="Deletar"
-                                    ionic="trash-outline"
-                                    color="danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#confirmDelete-{{ $planning['id'] }}"
-                                />
+                        @if((($user = \Illuminate\Support\Facades\Auth::user()) && ($user->id === $planning['spreadsheet']['teacher_id'])) || $user->role === 'admin')
+                            <div class="list-style">
+                                <div class="link-drop d-flex justify-content-between">
+                                    <x-buttonStyle
+                                        action="Editar"
+                                        ionic="settings-outline"
+                                        color="primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#edit-{{ $planning['id'] }}"
+                                    />
+                                    <x-buttonStyle
+                                        action="Deletar"
+                                        ionic="trash-outline"
+                                        color="danger"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#confirmDelete-{{ $planning['id'] }}"
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 </div>
             </div>

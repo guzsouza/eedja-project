@@ -18,7 +18,7 @@
             id="date"
             name="date"
             label="Data"
-            value="{{ old('date', optional($planning)->date) }}"
+            value="{{ old('date', optional($planning)->date) }}" 
         />
         
         <div class="mb-3">

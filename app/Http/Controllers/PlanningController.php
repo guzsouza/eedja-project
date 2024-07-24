@@ -64,7 +64,6 @@ class PlanningController{
         if($request->has('date')){
             $params[] = 'Data: ' . $request->date;
         }
-
         return view('components.planning.show', ['plannings' => $plannings, 'params' => $params]);
     }
 

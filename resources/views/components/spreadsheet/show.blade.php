@@ -10,20 +10,22 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="d-flex justify-content-between teste">
-                            <x-buttonStyle
-                                color="primary"
-                                ionic="settings-outline"
-                                action="Editar planilha"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editSpreadsheet"
-                            />
-                            <x-buttonStyle
-                                color="success"
-                                ionic="add-outline"
-                                action="Adicionar planejamento"
-                                data-bs-toggle="modal"
-                                data-bs-target="#createPlanning"
-                            />
+                            @if((($user = \Illuminate\Support\Facades\Auth::user()) && ($user->id === $spreadsheet['teacher_id'])) || $user->role === 'admin')
+                                <x-buttonStyle
+                                    color="primary"
+                                    ionic="settings-outline"
+                                    action="Editar planilha"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editSpreadsheet"
+                                />
+                                <x-buttonStyle
+                                    color="success"
+                                    ionic="add-outline"
+                                    action="Adicionar planejamento"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#createPlanning"
+                                />
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                                 </div>
                                 <div class="form-control d-flex justify-content-between">
                                     <p class="col-sm-6 d-flex justify-content-center"><span><strong>Número de aulas: </strong>{{ $spreadsheet['classes'] }}</span></p>
-                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ $spreadsheet['startDate'] }} <strong> até </strong> {{ $spreadsheet['endDate'] }}</span></p>
+                                    <p class="col-sm-6 d-flex justify-content-center"><span><strong>Período: </strong>{{ Carbon\Carbon::parse($spreadsheet['startDate'])>format('d/m/Y') }} <strong> até </strong> {{ Carbon\Carbon::parse($spreadsheet['endDate'])>format('d/m/Y') }}</span></p>
                                 </div>
                             </div>
                         </div>

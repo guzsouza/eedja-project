@@ -43,6 +43,7 @@ class PlanningService{
         try{
             $plannings = Planning::Where('spreadsheet_id', $id)
                             ->orderBy('date', 'ASC')
+                            ->with('spreadsheet')
                             ->get()
                             ->toArray();
             $planningsData = $plannings;
@@ -76,6 +77,7 @@ class PlanningService{
         try{
             if($this->hasOnly($request, 'date')){
                 $plannings = Planning::where('date', $request->date)
+                            ->with('spreadsheet')
                             ->orderBy('date', 'ASC')
                             ->get();
             }else{
@@ -105,6 +107,7 @@ class PlanningService{
                 $plannings = [];
                 foreach($spreadsheets as $spreadsheet){
                     foreach($spreadsheet['plannings'] as $planning){
+                        $planning['spreadsheet'] = $spreadsheet[0];
                         $plannings[] = $planning;
                     }
                 }

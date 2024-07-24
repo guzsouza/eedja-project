@@ -11,11 +11,11 @@ trait Check{
         $this->spreadsheetService = $spreadsheetService;
     }
 
-    public function checkSpreadsheetOwner(Request $request, $isAdmin){
+    public function checkSpreadsheetOwner(Request $request){
         $user = Auth::user();
         $spreadsheet_id = $request->route('id');
         $spreadsheet = $this->spreadsheetService->getById($spreadsheet_id);
-        if ($spreadsheet && ($user['id'] === $spreadsheet['teacher_id'] || $isAdmin)){
+        if (($spreadsheet && ($user['id'] === $spreadsheet['teacher_id'])) || ($user->role === 'admin')){
             return true;
         } else{
             return false;
