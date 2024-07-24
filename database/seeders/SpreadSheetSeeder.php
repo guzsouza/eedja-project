@@ -38,7 +38,7 @@ class SpreadSheetSeeder extends Seeder{
             [
                 'id' => '3',
                 'group_id' => '3',
-                'teacher_id' => '3',
+                'teacher_id' => '10',
                 'discipline_id' => '3',
                 'bimester' => '3',
                 'year' => '2024',

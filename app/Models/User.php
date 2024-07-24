@@ -50,4 +50,8 @@ class User extends Authenticatable{
     public function addresses(){
         return $this->HasMany(Address::class, 'user_id');
     }
+
+    public function isAdmin(){
+        $return::parent();
+    }
 }

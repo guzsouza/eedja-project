@@ -15,15 +15,17 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'id' => '1',
+                'role' => 'teacher',
                 'name' => 'João Augusto',
-                'email' => 'joao.augusto@example.com',
-                'password' => 'password123',
+                'email' => 'joao@gmail.com',
+                'password' => '12345678',
                 'cpf' => '123.456.789-01',
                 'profilePhoto' => 'path/to/photo1.jpg',
                 'telephone' => '1234-5678'
             ],
             [
                 'id' => '2',
+                'role' => 'teacher',
                 'name' => 'Maria Silva',
                 'email' => 'maria.silva@example.com',
                 'password' => 'password123',
@@ -33,6 +35,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '3',
+                'role' => 'teacher',
                 'name' => 'Carlos Oliveira',
                 'email' => 'carlos.oliveira@example.com',
                 'password' => 'password123',
@@ -42,6 +45,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '4',
+                'role' => 'teacher',
                 'name' => 'Ana Souza',
                 'email' => 'ana.souza@example.com',
                 'password' => 'password123',
@@ -51,6 +55,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '5',
+                'role' => 'teacher',
                 'name' => 'Pedro Martins',
                 'email' => 'pedro.martins@example.com',
                 'password' => 'password123',
@@ -60,6 +65,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '6',
+                'role' => 'teacher',
                 'name' => 'Lucia Fernandes',
                 'email' => 'lucia.fernandes@example.com',
                 'password' => 'password123',
@@ -69,6 +75,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '7',
+                'role' => 'teacher',
                 'name' => 'Roberto Lima',
                 'email' => 'roberto.lima@example.com',
                 'password' => 'password123',
@@ -78,6 +85,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '8',
+                'role' => 'teacher',
                 'name' => 'Fernanda Costa',
                 'email' => 'fernanda.costa@example.com',
                 'password' => 'password123',
@@ -87,6 +95,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '9',
+                'role' => 'teacher',
                 'name' => 'Marcos Pereira',
                 'email' => 'marcos.pereira@example.com',
                 'password' => 'password123',
@@ -96,9 +105,20 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => '10',
+                'role' => 'teacher',
                 'name' => 'Paula Rodrigues',
-                'email' => 'paula.rodrigues@example.com',
-                'password' => 'password123',
+                'email' => 'aaaaaaa@gmail.com',
+                'password' => '12345678',
+                'cpf' => '012.345.678-90',
+                'profilePhoto' => 'path/to/photo10.jpg',
+                'telephone' => '0123-4567'
+            ],
+            [
+                'id' => '11',
+                'role' => 'admin',
+                'name' => 'Teste',
+                'email' => 'teste@gmail.com',
+                'password' => '12345678',
                 'cpf' => '012.345.678-90',
                 'profilePhoto' => 'path/to/photo10.jpg',
                 'telephone' => '0123-4567'
@@ -112,6 +132,7 @@ class UserSeeder extends Seeder
                 'email' => $user['email'],
                 'password' => $user['password'],
                 'cpf' => $user['cpf'],
+                'role' => $user['role'],
                 'profilePhoto' => $user['profilePhoto'],
                 'telephone' => $user['telephone']
             ]);

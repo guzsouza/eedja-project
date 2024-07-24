@@ -1,6 +1,9 @@
 <div class="mb-3" style="padding: 10px 30px">
     <form action="{{ $action }}" method="POST" id="planningForm">
         @csrf
+        @if($update)
+            @method('PUT')
+        @endif
         <x-labelValueField 
             id="group" 
             label="Turma" 

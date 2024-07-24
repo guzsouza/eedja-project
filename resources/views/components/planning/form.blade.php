@@ -20,6 +20,16 @@
             label="Data"
             value="{{ old('date', optional($planning)->date) }}"
         />
+        
+        <div class="mb-3">
+            <x-textAreaField
+                id="resume"
+                name="resume"
+                label="Resumo"
+                placeholder="Digite o resumo don planejamento"
+                value="{{ old('resume', optional($planning)->resume) }}"
+            />
+        </div>
 
         <div class="mb-3">
             <x-textAreaField
@@ -53,11 +63,11 @@
 
         <div class="mb-3">
             <x-textAreaField
-                id="metodologies"
-                name="metodologies"
+                id="methodologies"
+                name="methodologies"
                 label="Metodologia"
                 placeholder="Metodologia"
-                value="{{ old('metodology', optional($planning)->metodologies) }}"
+                value="{{ old('metodology', optional($planning)->methodologies) }}"
             />
         </div>
 

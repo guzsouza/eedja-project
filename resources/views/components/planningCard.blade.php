@@ -12,7 +12,7 @@
                 <button class="form-control" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePlanning{{ $planning['id'] }}" aria-expanded="false" aria-controls="collapseExample" onclick="toggleDrop(this)">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="planning-name">
-                            <strong>{{ $index }}</strong> - {{ $planning['date'] }} - {{ $planning['resume'] }}
+                            <strong>{{ $index }}</strong> - {{ Carbon\Carbon::parse($planning['date'])->format('d/m/Y') }} - {{ $planning['resume'] }}
                         </span>
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="list-style">
                         <div class="link-drop">
-                            <p><strong>Metodologia:</strong> {{ $planning['metodologies'] }}</p>
+                            <p><strong>Metodologia:</strong> {{ $planning['methodologies'] }}</p>
                         </div>
                     </div>
                     <div class="list-style">
@@ -85,7 +85,7 @@
             <br>Esta ação é definitiva.</p>
         </div>
         <div class="mt-3">
-            <form action="{{ route('planning.delete', ['id' => $planning['id']]) }}" method="POST">
+            <form action="{{ route('planning.delete', ['id' => $planning['spreadsheet_id'], 'planning_id' => $planning['id']]) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <x-buttonStyle
@@ -101,7 +101,7 @@
     {{-- Edit modal --}}
     <x-modal id="edit-{{ $planning['id'] }}" title="Editar planejamento">
         <x-planning.form
-            action="{{ route('planning.update', ['id' => $planning['id']]) }}"
+            action="{{ route('planning.update', ['id' => $planning['spreadsheet_id'], 'planning_id' => $planning['id']]) }}"
             update="{{ true }}"
             :planning="$planning"
             id="{{ $planning['spreadsheet_id'] }}"

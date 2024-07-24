@@ -73,14 +73,13 @@ class PlanningController{
         return redirect()->back()->with('status', 'Planejamento criado com sucesso!');
     }
 
-    public function update(int $id, UpdatePlanningRequest $request){
-        // dd($request->all());
-        $this->planningService->update($id, $request);
+    public function update(int $id, int $planning_id, UpdatePlanningRequest $request){
+        $this->planningService->update($planning_id, $request);
         return redirect()->back()->with('status', 'Planejamento editado com sucesso!');
     }
 
-    public function destroy(int $id){
-        $this->planningService->delete($id);
+    public function destroy(int $id, int $planning_id){
+        $this->planningService->delete($planning_id);
         return redirect()->back()->with('status', 'Planejamento deletado');
     }
 }

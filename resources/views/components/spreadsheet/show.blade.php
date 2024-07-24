@@ -69,7 +69,7 @@
             {{-- Create Planning Modal --}}
             <x-modal id="createPlanning" title="Criando planejamento">
                 <x-planning.form
-                    action="{{ route('planning.store') }}" 
+                    action="{{ route('planning.store', ['id' => $spreadsheet['id']]) }}" 
                     update="{{ false }}"
                     id="{{ $spreadsheet['id'] }}"
                 />
@@ -78,7 +78,7 @@
             {{-- edit spreadsheet modal --}}
             <x-modal id="editSpreadsheet" title="Edição de planilha">
                 <x-spreadsheet.form
-                    action="{{ route('spreadsheet.update') }}"
+                    action="{{ route('spreadsheet.update', ['id' => $spreadsheet['id']]) }}"
                     update="{{ true }}"
                     :spreadsheet="$spreadsheet"
                 />
