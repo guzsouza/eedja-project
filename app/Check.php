@@ -29,4 +29,12 @@ trait Check{
         }
         return false;
     }
+
+    public function checkAdminRole(){
+        $user = Auth::user();
+        if ($user->role === 'admin'){
+            return true;
+        }
+        return false;
+    }
 }

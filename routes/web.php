@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckUserRole;
 use App\Http\Middleware\CheckSpreadsheetOwner;
+use App\Http\Middleware\CheckAdminRole;
 
 
 // Route::get('/teste', [Controller::class, 'teste']);

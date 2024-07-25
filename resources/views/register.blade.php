@@ -29,8 +29,38 @@
                 icon="{{ false }}"
             />
             <x-floatingInputField
-                name="password"
-                label="Senha"
+                name="country"
+                label="País"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="state"
+                label="Estado"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="city"
+                label="Cidade"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="cep"
+                label="CEP"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="neighborhood"
+                label="Bairro"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="adress"
+                label="Rua"
+                icon="{{ false }}"
+            />
+            <x-floatingInputField
+                name="number"
+                label="Número"
                 icon="{{ false }}"
             />
         </div>
